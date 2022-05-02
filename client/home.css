@@ -1,0 +1,15 @@
+#navbar {
+background-color: rgb(120, 178, 229);
+height: 10vh;
+}
+#columns {
+    display:flex;
+    height: 40 vw;
+    width: 100 vw;
+    justify-content: space-around;
+}
+.columns {
+    height: 40vw;
+    width: 30vw;
+    background-color: rgb(230, 230, 230);
+}
