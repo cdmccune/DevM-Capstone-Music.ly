@@ -52,6 +52,10 @@ seed: (req, res) => {
             playlist_id INTEGER NOT NULL REFERENCES playlists(playlist_id),
             song_id INTEGER NOT NULL REFERENCES songs(song_id)
         );
+
+        INSERT INTO users (email, password, firstname, lastname)
+        VALUES ('curtmccune@comcast.net, 12345678, Curt, McCune);
+        
     `).then(()=>{
         console.log('DB seeded!')
         res.sendStatus(200)

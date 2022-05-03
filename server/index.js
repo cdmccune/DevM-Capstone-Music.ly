@@ -11,5 +11,9 @@ app.use(cors())
 //Wipes and seeds the DB
  app.post('/seed', seed)
 
+ //Post to create a new user
+ //Get to log-in a user
+ 
+
 
  app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
