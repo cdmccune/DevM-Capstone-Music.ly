@@ -6,16 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Songs</title>
     <link rel="stylesheet" href="songs.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<header>
-    <nav id="navbar">
-        <a href="/client/home/home.html">Music.ly</a>
-        <a href="/client/artists/artists.html">Artists</a>
-        <a href="/client/songs/songs.html">Songs</a>
-        <a href="/client/playlist/playlist.html">My Playlist</a>
-    </nav>
-</header>
+<body> 
+    <header>
+        <nav id="navbar">
+            <a href="/client/home/home.html">Music.ly</a>
+            <a href="/client/artists/artists.html">Artists</a>
+            <a href="/client/songs/songs.html">Songs</a>
+            <a href="/client/playlist/playlist.html">My Playlist</a>
+        </nav>
+    </header>
 
-<main></main>
+    <main>
+        <h1>Songs</h1>
+        <form id="genres">
+            <h3>Choose The Genres You Want To See</h3>
+            <fieldset>
+                <input id="alternative" type= "checkbox" name="genre" value="Alternative">
+                <label for="alternative">Alternative</label> <br>
+                <input id="classic" type= "checkbox" name="genre" value="Classic">
+                <label for="classic">Classic</label> <br>
+                <input id="pop" type= "checkbox" name="genre" value="Pop">
+                <label for="pop">Pop</label> <br>
+                <input id="R&B" type= "checkbox" name="genre" value="R&B">
+                <label for="R&B">R&B</label> <br>
+                <input id="rap" type= "checkbox" name="genre" value="Rap">
+                <label for="rap">Rap</label> <br>
+                <br>
+                <input type="submit" value="Search!">
+            </fieldset>
+            
+        </form>
 
-<footer></footer>
+        <section id="songslist">
+            
+        </section>
+    </main>
+    
+    
+    <script src="songs.js"></script>
+    <footer></footer>
+
+</body>

@@ -57,5 +57,28 @@ module.exports = {
                     
                 }
             })
+    },
+
+    getSongs : (req, res) => {
+        let genres = req.body.genres
+        let resSongs = []
+        genres.forEach(genre => {
+            sequelize.query(`
+            SELECT a.artist_name, s.song_name, s.song_id
+            FROM songs AS s
+            JOIN artists AS a ON s.artist_id = a.artist_id
+            WHERE s.genre = '${genre}';
+            `)
+            .then(dbRes => {
+
+                // resSongs.push(1)
+                resSongs.push(dbRes[0])
+
+                //Why do I need to do this within the .then and not outside. If I do it outside any changes I make to resSongs get deleted.
+                if (resSongs.length == genres.length) {
+                    res.status(200).send(resSongs)
+                }
+            })
+        })
     }
 }
