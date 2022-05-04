@@ -15,11 +15,11 @@ module.exports ={
 // Destroys all tables that are currently there and creates them fresh. Also repopulates the artists 
 seed: (req, res) => {
     sequelize.query(`
-        DROP TABLE IF EXISTS users;
-        DROP TABLE IF EXISTS artists;
-        DROP TABLE IF EXISTS songs;
         DROP TABLE IF EXISTS playlistsong;
         DROP TABLE IF EXISTS playlists;
+        DROP TABLE IF EXISTS songs;
+        DROP TABLE IF EXISTS artists;
+        DROP TABLE IF EXISTS users;
 
         CREATE TABLE users (
             user_id SERIAL PRIMARY KEY,
@@ -53,8 +53,8 @@ seed: (req, res) => {
             song_id INTEGER NOT NULL REFERENCES songs(song_id)
         );
 
-        INSERT INTO users (email, password, firstname, lastname)
-        VALUES ('curtmccune@comcast.net, 12345678, Curt, McCune);
+        INSERT INTO users (email, password, first_name, last_name)
+        VALUES ('curtmccune@comcast.net', 12345678, 'Curt', 'McCune');
         
     `).then(()=>{
         console.log('DB seeded!')
@@ -62,3 +62,5 @@ seed: (req, res) => {
     }).catch(err => {console.log(`error seedind DB`, err)})
 }
 }
+
+// curtmccune@comcast.net

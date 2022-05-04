@@ -4,6 +4,7 @@ const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
 const{seed} = require('./seed')
+const{login, createAcc} = require('./controller')
 
 app.use(express.json())
 app.use(cors())
@@ -14,6 +15,8 @@ app.use(cors())
  //Post to create a new user
  //Get to log-in a user
  
+ app.post('/login', login)
+ app.post('/createAcc', createAcc)
 
 
  app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
