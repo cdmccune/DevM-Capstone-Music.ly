@@ -91,16 +91,25 @@ module.exports = {
         })
     },
 
-    usersSongs: (req,res) => {
-        sequelize.query(`
-        SELECT song_id
-        FROM playlistsong AS ps
-        JOIN playlists as p ON ps.playlist_id = p.playlist_id
-        WHERE p.user_id = '${req.body.userid}';
-        `)
-        .then(dbRes => {
-            res.status(200).send(dbRes[0])
-        })
-
+    deleteSong: (req,res) => {
+       console.log(req.query)
+        // sequelize.query(`
+        // DELETE 
+        // FROM playlistsong
+        // WHERE 
+        // `)
     }
+
+    // usersSongs: (req,res) => {
+    //     sequelize.query(`
+    //     SELECT song_id
+    //     FROM playlistsong AS ps
+    //     JOIN playlists as p ON ps.playlist_id = p.playlist_id
+    //     WHERE p.user_id = '${req.body.userid}';
+    //     `)
+    //     .then(dbRes => {
+    //         res.status(200).send(dbRes[0])
+    //     })
+
+    // }
 }

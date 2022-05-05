@@ -4,7 +4,7 @@ const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
 const{seed} = require('./seed')
-const{login, createAcc, getSongs, usersSongs} = require('./controller')
+const{login, createAcc, getSongs, deleteSong} = require('./controller')
 
 app.use(express.json())
 app.use(cors())
@@ -18,9 +18,10 @@ app.use(cors())
  app.post('/createAcc', createAcc)
 
 //Songs Page: 
-//To get the songs
+//To get the songs from the search and the users playlist
 app.post(`/songs`, getSongs)
-//To get the songs that are already in the users playlist
-app.post('/songs/playlist', usersSongs)
+
+app.delete("/songs", deleteSong)
+
 
  app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))

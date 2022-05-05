@@ -68,7 +68,7 @@ const getSongs = (e)=>{
                     div.appendChild(deleteBtn)
                     deleteBtn.value = `${song}`
                     deleteBtn.textContent = `Delete from playlist`
-                    deleteBtn.addEventListener('click', ()=>{console.log('hi')})
+                    deleteBtn.addEventListener('click', deleteSong)
                 } else {
                     let addBtn = document.createElement("button")
                     div.appendChild(addBtn)
@@ -78,6 +78,17 @@ const getSongs = (e)=>{
                 }
             })
         })
+}
+
+const deleteSong = (e) => {
+    
+    let body = {
+        song_id: e.target.value,
+        user_id: window.localStorage.getItem("userID")
+    }
+    axios.delete(`${baseURL}/songs?song=${e.target.value}&userID=${window.localStorage.getItem("userID")}`)
+        .then()
+
 }
 
 
