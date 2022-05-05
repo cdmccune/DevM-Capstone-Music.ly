@@ -51,6 +51,11 @@ module.exports = {
                     `)
                     .then((dbRes2 => {
                         userID = dbRes2[0][0]
+
+                        sequelize.query(`
+                        INSERT INTO playlists (user_id)
+                        VALUES ('${userID.userid}')
+                        `)
                         res.status(200).send(userID)
                     }))
                   
@@ -60,6 +65,7 @@ module.exports = {
     },
 
     getSongs : (req, res) => {
+        console.log(req.body)
         let genres = req.body.genres
         let resSongs = []
         genres.forEach(genre => {
@@ -75,7 +81,7 @@ module.exports = {
                 sequelize.query(`SELECT song_id
                 FROM playlistsong AS ps
                 JOIN playlists as p ON ps.playlist_id = p.playlist_id
-                WHERE p.user_id = '1';`)
+                WHERE p.user_id = '${req.body.userid}';`)
                 .then(dbRes2 => {
                     // console.log(dbRes2[0])
                     // resSongs.push(1)
@@ -93,11 +99,11 @@ module.exports = {
 
     deleteSong: (req,res) => {
        console.log(req.query)
-        // sequelize.query(`
-        // DELETE 
-        // FROM playlistsong
-        // WHERE 
-        // `)
+        sequelize.query(`
+        DELETE
+        FROM playlistsong
+        WHERE playlist_id = '${req.query.userID}' AND song_id = '${req.query.song}'
+        `).then(dbRes => {res.sendStatus(200)})
     }
 
     // usersSongs: (req,res) => {

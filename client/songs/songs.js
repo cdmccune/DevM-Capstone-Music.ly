@@ -36,6 +36,7 @@ const getSongs = (e)=>{
         }
     });
     let body = {
+        userid: window.localStorage.getItem("userID"),
         genres: checkedgenres
     }
 
@@ -58,6 +59,7 @@ const getSongs = (e)=>{
             songsArr.forEach((song, index) => {
                 let div = document.createElement("div")
                     section.appendChild(div)
+                    div.id= `div${song}`
                     div.innerHTML = `
                     <p>${res.data[0][index].song_name} ${res.data[0][index].artist_name}</p>
                     `
@@ -67,12 +69,14 @@ const getSongs = (e)=>{
                     let deleteBtn = document.createElement("button")
                     div.appendChild(deleteBtn)
                     deleteBtn.value = `${song}`
+                    deleteBtn.id = `btn${song}`
                     deleteBtn.textContent = `Delete from playlist`
                     deleteBtn.addEventListener('click', deleteSong)
                 } else {
                     let addBtn = document.createElement("button")
                     div.appendChild(addBtn)
                     addBtn.value = `${song}`
+                    addBtn.id = `btn${song}`
                     addBtn.textContent = `Add from playlist`
                     addBtn.addEventListener('click', ()=>{console.log('hi')})
                 }
@@ -82,12 +86,22 @@ const getSongs = (e)=>{
 
 const deleteSong = (e) => {
     
-    let body = {
-        song_id: e.target.value,
-        user_id: window.localStorage.getItem("userID")
-    }
-    axios.delete(`${baseURL}/songs?song=${e.target.value}&userID=${window.localStorage.getItem("userID")}`)
-        .then()
+        let songid =  e.target.value
+        let userid = window.localStorage.getItem("userID")
+
+    axios.delete(`${baseURL}/songs?song=${songid}&userID=${userid}`)
+        .then(()=> {
+            let button = document.getElementById(`btn${songid}`)
+            let div = button.parentNode
+            div.removeChild(button)
+
+            let addBtn = document.createElement("button")
+            div.appendChild(addBtn)
+            addBtn.value = `${songid}`
+            addBtn.id = `btn${songid}`
+            addBtn.textContent = `Add from playlist`
+            addBtn.addEventListener('click', ()=>{console.log('hi')})
+        })
 
 }
 
