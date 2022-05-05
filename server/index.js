@@ -19,7 +19,7 @@ app.use(cors())
 
 //Songs Page: 
 //To get the songs from the search and the users playlist
-app.post(`/songs`, getSongs)
+app.get(`/songs`, getSongs)
 
 app.delete("/songs", deleteSong)
 

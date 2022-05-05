@@ -65,15 +65,30 @@ module.exports = {
     },
 
     getSongs : (req, res) => {
-        console.log(req.body)
-        let genres = req.body.genres
+        let genreList = (req.query.genre)
+
+
+        genreList = genreList.split(",")
+        genreListCustom = ""
+        genreList.forEach(genre => {
+            genreListCustom = genreListCustom + "s.genre = '" + genre + "' OR "
+        })
+
+        genreListCustom = genreListCustom.slice(0,genreListCustom.length-4)
+        
+        console.log(`glC ${genreListCustom}`)
+        genreList = genreList.join()
+
+
+        let userid = req.query.userID
         let resSongs = []
-        genres.forEach(genre => {
-            sequelize.query(`
+        let genresAdded = []
+
+        sequelize.query(`
             SELECT a.artist_name, s.song_name, s.song_id
             FROM songs AS s
             JOIN artists AS a ON s.artist_id = a.artist_id
-            WHERE s.genre = '${genre}';
+            WHERE ${genreListCustom};
 
             
             `)
@@ -81,20 +96,50 @@ module.exports = {
                 sequelize.query(`SELECT song_id
                 FROM playlistsong AS ps
                 JOIN playlists as p ON ps.playlist_id = p.playlist_id
-                WHERE p.user_id = '${req.body.userid}';`)
+                WHERE p.user_id = '${userid}';`)
                 .then(dbRes2 => {
-                    // console.log(dbRes2[0])
-                    // resSongs.push(1)
+
                     resSongs.push(dbRes[0])
-    
-                    //Why do I need to do this within the .then and not outside. If I do it outside any changes I make to resSongs get deleted.
-                    if (resSongs.length == genres.length) {
-                        res.status(200).send([resSongs[0],dbRes2[0]])
-                    } 
+                    console.log(resSongs[0])
+                    res.status(200).send([resSongs[0],dbRes2[0]])
                 })
                 
             })
-        })
+        
+
+        //lets try to add logic in the sequel query, so try to do it for all 5 of the genres
+        // genreList.forEach(genre => {
+
+        //     genresAdded.push(1)
+        //     sequelize.query(`
+        //     SELECT a.artist_name, s.song_name, s.song_id
+        //     FROM songs AS s
+        //     JOIN artists AS a ON s.artist_id = a.artist_id
+        //     WHERE s.genre = '${genre}';
+
+            
+        //     `)
+        //     .then(dbRes => {
+        //         sequelize.query(`SELECT song_id
+        //         FROM playlistsong AS ps
+        //         JOIN playlists as p ON ps.playlist_id = p.playlist_id
+        //         WHERE p.user_id = '${userid}';`)
+        //         .then(dbRes2 => {
+                    
+        //             // resSongs.push(1)
+        //             resSongs.push(dbRes[0])
+
+        //             console.log(`genre list${genreList.length}`)
+        //             console.log(`genre added${genresAdded.length}`)
+        //             //Why do I need to do this within the .then and not outside. If I do it outside any changes I make to resSongs get deleted.
+        //             if (genreList.length == genresAdded.length) {
+        //                 console.log('hi')
+        //                 res.status(200).send([resSongs[0],dbRes2[0]])
+        //             } 
+        //         })
+                
+        //     })
+        // })
     },
 
     deleteSong: (req,res) => {

@@ -35,13 +35,15 @@ const getSongs = (e)=>{
             checkedgenres.push(checkbox.value)
         }
     });
-    let body = {
-        userid: window.localStorage.getItem("userID"),
-        genres: checkedgenres
-    }
+
+    let userid = window.localStorage.getItem("userID")
+    let genreList =  checkedgenres
+    
 
     //Does a post request with what songs are in those genres
-    axios.post(`${baseURL}/songs`, body)
+    // axios.get(`${baseURL}/songs?genre=${genres}&userID=${userid}`)
+    //axios.post(`${baseURL}/songs`, body)
+    axios.get(`${baseURL}/songs?genre=${genreList}&userID=${userid}`)
         .then(res => {
 
             //Creates an array for all the songs in the users' playlist and all the songs in checked boxes
@@ -78,9 +80,29 @@ const getSongs = (e)=>{
                     addBtn.value = `${song}`
                     addBtn.id = `btn${song}`
                     addBtn.textContent = `Add from playlist`
-                    addBtn.addEventListener('click', ()=>{console.log('hi')})
+                    addBtn.addEventListener('click', addSong)
                 }
             })
+        })
+}
+
+const addSong = (e) => {
+    
+    let songid =  e.target.value
+    let userid = window.localStorage.getItem("userID")
+
+    axios.post(`${baseURL}/songs?song=${songid}&userID=${userid}`)
+        .then(()=> {
+            let button = document.getElementById(`btn${songid}`)
+            let div = button.parentNode
+            div.removeChild(button)
+
+            let addBtn = document.createElement("button")
+            div.appendChild(addBtn)
+            addBtn.value = `${songid}`
+            addBtn.id = `btn${songid}`
+            addBtn.textContent = `Add from playlist`
+            addBtn.addEventListener('click', ()=>{console.log('hi')})
         })
 }
 
