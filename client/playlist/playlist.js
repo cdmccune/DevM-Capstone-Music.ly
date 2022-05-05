@@ -63,7 +63,7 @@ const showPlaylist = () => {
          });
         
      })
-    //  .catch((e)=> {window.location.reload()})
+     .catch((e)=> {window.location.reload()})
 } 
 
 const deleteSong = (e) => {

@@ -4,8 +4,6 @@ const form = document.querySelector("form")
 const section = document.querySelector("section")
 
 
-// console.log(genres)
-
 //Gets all the songs that are currently on the users playlist
 const getUserSongs = () => {
     let body = {
@@ -20,21 +18,26 @@ const getUserSongs = () => {
                 window.localStorage.setItem("usersongs", playlistsongs)
             })
         })
-        return "hi"
 }
 
 //Print all the songs and "add" or "delete" button when the user does a search
 const getSongs = (e)=>{
     e.preventDefault()
 
-    //Checks which checkboxes are checked
+    //Deletes all the previosu search results
+    section.innerHTML=""
+
+    //Checks which checkboxes are checked, and unchecks them 
     const genres = document.getElementsByName("genre")
     let checkedgenres = []
     genres.forEach(checkbox => {
         if (checkbox.checked) {
             checkedgenres.push(checkbox.value)
         }
+        checkbox.checked = false
     });
+
+    
     
 
     let userid = window.localStorage.getItem("userID")
