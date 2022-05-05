@@ -68,17 +68,39 @@ module.exports = {
             FROM songs AS s
             JOIN artists AS a ON s.artist_id = a.artist_id
             WHERE s.genre = '${genre}';
+
+            
             `)
             .then(dbRes => {
-
-                // resSongs.push(1)
-                resSongs.push(dbRes[0])
-
-                //Why do I need to do this within the .then and not outside. If I do it outside any changes I make to resSongs get deleted.
-                if (resSongs.length == genres.length) {
-                    res.status(200).send(resSongs)
-                }
+                sequelize.query(`SELECT song_id
+                FROM playlistsong AS ps
+                JOIN playlists as p ON ps.playlist_id = p.playlist_id
+                WHERE p.user_id = '1';`)
+                .then(dbRes2 => {
+                    // console.log(dbRes2[0])
+                    // resSongs.push(1)
+                    resSongs.push(dbRes[0])
+    
+                    //Why do I need to do this within the .then and not outside. If I do it outside any changes I make to resSongs get deleted.
+                    if (resSongs.length == genres.length) {
+                        res.status(200).send([resSongs[0],dbRes2[0]])
+                    } 
+                })
+                
             })
         })
+    },
+
+    usersSongs: (req,res) => {
+        sequelize.query(`
+        SELECT song_id
+        FROM playlistsong AS ps
+        JOIN playlists as p ON ps.playlist_id = p.playlist_id
+        WHERE p.user_id = '${req.body.userid}';
+        `)
+        .then(dbRes => {
+            res.status(200).send(dbRes[0])
+        })
+
     }
 }

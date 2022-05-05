@@ -45,7 +45,8 @@ seed: (req, res) => {
 
         CREATE TABLE playlists (
             playlist_id SERIAL PRIMARY KEY,
-            user_id INTEGER NOT NULL REFERENCES users(user_id)
+            user_id INTEGER NOT NULL REFERENCES users(user_id),
+            playlist_name VARCHAR(30)
         );
 
         CREATE TABLE playlistsong (
@@ -56,6 +57,9 @@ seed: (req, res) => {
 
         INSERT INTO users (email, password, first_name, last_name)
         VALUES ('curtmccune@comcast.net', 12345678, 'Curt', 'McCune');
+        
+        INSERT INTO playlists (user_id, playlist_name)
+        VALUES (1, 'The Best Playlist');
 
         INSERT INTO artists (artist_name)
         VALUES ('The Lumineers'),
@@ -180,6 +184,28 @@ seed: (req, res) => {
         ('Laugh Now Cry Later', 20, 'Rap'),
         ('Controlla', 20, 'Rap'),
         ('Chicago Freestyle', 20, 'Rap');
+
+        INSERT INTO playlistsong (playlist_id, song_id)
+        VALUES (1,1),
+        (1,4),
+        (1,7),
+        (1,12),
+        (1,18),
+        (1,21),
+        (1,36),
+        (1,41),
+        (1,47),
+        (1,54),
+        (1,59),
+        (1,64),
+        (1,67),
+        (1,68),
+        (1,78),
+        (1,81),
+        (1,89),
+        (1,92),
+        (1,100);
+        
     `).then(()=>{
         console.log('DB seeded!')
         res.sendStatus(200)
