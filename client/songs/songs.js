@@ -35,14 +35,12 @@ const getSongs = (e)=>{
             checkedgenres.push(checkbox.value)
         }
     });
+    
 
     let userid = window.localStorage.getItem("userID")
     let genreList =  checkedgenres
-    
 
     //Does a post request with what songs are in those genres
-    // axios.get(`${baseURL}/songs?genre=${genres}&userID=${userid}`)
-    //axios.post(`${baseURL}/songs`, body)
     axios.get(`${baseURL}/songs?genre=${genreList}&userID=${userid}`)
         .then(res => {
 
@@ -97,12 +95,13 @@ const addSong = (e) => {
             let div = button.parentNode
             div.removeChild(button)
 
-            let addBtn = document.createElement("button")
-            div.appendChild(addBtn)
-            addBtn.value = `${songid}`
-            addBtn.id = `btn${songid}`
-            addBtn.textContent = `Add from playlist`
-            addBtn.addEventListener('click', ()=>{console.log('hi')})
+            let deleteBtn = document.createElement("button")
+            div.appendChild(deleteBtn)
+            deleteBtn.value = `${songid}`
+            deleteBtn.id = `btn${songid}`
+            deleteBtn.textContent = `Delete from playlist`
+            deleteBtn.addEventListener('click', deleteSong)
+           
         })
 }
 
@@ -122,7 +121,7 @@ const deleteSong = (e) => {
             addBtn.value = `${songid}`
             addBtn.id = `btn${songid}`
             addBtn.textContent = `Add from playlist`
-            addBtn.addEventListener('click', ()=>{console.log('hi')})
+            addBtn.addEventListener('click', addSong)
         })
 
 }

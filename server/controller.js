@@ -76,7 +76,6 @@ module.exports = {
 
         genreListCustom = genreListCustom.slice(0,genreListCustom.length-4)
         
-        console.log(`glC ${genreListCustom}`)
         genreList = genreList.join()
 
 
@@ -100,7 +99,6 @@ module.exports = {
                 .then(dbRes2 => {
 
                     resSongs.push(dbRes[0])
-                    console.log(resSongs[0])
                     res.status(200).send([resSongs[0],dbRes2[0]])
                 })
                 
@@ -143,24 +141,50 @@ module.exports = {
     },
 
     deleteSong: (req,res) => {
-       console.log(req.query)
         sequelize.query(`
         DELETE
         FROM playlistsong
         WHERE playlist_id = '${req.query.userID}' AND song_id = '${req.query.song}'
         `).then(dbRes => {res.sendStatus(200)})
+    },
+
+    addSong: (req,res) => {
+        sequelize.query(`
+       INSERT INTO playlistsong (playlist_id, song_id)
+       VALUES (${req.query.userID}, ${req.query.song})
+        `).then(dbRes => {res.sendStatus(200)})
+    },
+
+    getPlaylist: (req,res) => {
+        userid = req.query.userID
+        sequelize.query(`SELECT ps.song_id, s.song_name, s.genre, a.artist_name
+                FROM playlistsong AS ps
+                JOIN playlists AS p ON ps.playlist_id = p.playlist_id
+                JOIN songs AS s ON ps.song_id = s.song_id
+                JOIN artists AS a ON s.artist_id = a.artist_id
+                WHERE p.user_id = '${userid}'
+                ORDER BY s.genre;` )
+                .then(dbRes => {
+                    sequelize.query(`
+                    SELECT playlist_name
+                    FROM playlists
+                    WHERE ${userid} = playlist_id;
+                    `)
+                    .then( dbRes2 => {
+                    res.status(200).send([dbRes[0], dbRes2[0]])
+                    })
+                })
+    },
+
+    createPlaylist: (req,res) => {
+        let {userid, playlistName} = req.body
+
+        sequelize.query(`
+            UPDATE playlists
+            SET playlist_name = '${playlistName}'
+            WHERE playlist_id = ${userid}
+        `).then(dbRes => {
+            res.sendStatus(200)
+        })
     }
-
-    // usersSongs: (req,res) => {
-    //     sequelize.query(`
-    //     SELECT song_id
-    //     FROM playlistsong AS ps
-    //     JOIN playlists as p ON ps.playlist_id = p.playlist_id
-    //     WHERE p.user_id = '${req.body.userid}';
-    //     `)
-    //     .then(dbRes => {
-    //         res.status(200).send(dbRes[0])
-    //     })
-
-    // }
 }

@@ -15,6 +15,14 @@
             <a href="/client/artists/artists.html">Artists</a>
             <a href="/client/songs/songs.html">Songs</a>
             <a href="/client/playlist/playlist.html">My Playlist</a>
+            <a id="logOut" href="/client/login/login.html">Log Out
+                <script>
+                    let logOut = document.getElementById("logOut")
+                    logOut.addEventListener("click", ()=>{
+                        localStorage.clear()
+                    })
+                </script>
+            </a>
         </nav>
     </header>
 
@@ -29,7 +37,7 @@
                 <label for="classic">Classic</label> <br>
                 <input id="pop" type= "checkbox" name="genre" value="Pop">
                 <label for="pop">Pop</label> <br>
-                <input id="R&B" type= "checkbox" name="genre" value="R&B">
+                <input id="R&B" type= "checkbox" name="genre" value="RnB">
                 <label for="R&B">R&B</label> <br>
                 <input id="rap" type= "checkbox" name="genre" value="Rap">
                 <label for="rap">Rap</label> <br>

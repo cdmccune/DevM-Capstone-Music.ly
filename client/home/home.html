@@ -14,6 +14,14 @@
         <a href="/client/artists/artists.html">Artists</a>
         <a href="/client/songs/songs.html">Songs</a>
         <a href="/client/playlist/playlist.html">My Playlist</a>
+        <a id="logOut" href="/client/login/login.html">Log Out
+            <script>
+                let logOut = document.getElementById("logOut")
+                logOut.addEventListener("click", ()=>{
+                    localStorage.clear()
+                })
+            </script>
+        </a>
     </nav>
 </header>
 
