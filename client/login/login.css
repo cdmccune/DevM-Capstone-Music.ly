@@ -1,4 +1,106 @@
+main {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+}
+
 #navbar {
     background-color: rgb(120, 178, 229);
     height: 10vh;
+    font-size: 50px;
+    font-weight:bold;
+    -webkit-text-stroke: 2px white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: left;
+    align-items: center;
     }
+p {
+    margin-left: 2vw;
+}
+    
+
+#userinputs {
+    display: flex;
+    justify-content:center;
+    height:90vh;
+    align-items: flex-start;
+}
+
+.box {
+    margin: 1.5vw;
+    background-color: rgb(120, 178, 229);
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    border-radius: 5%;
+    -webkit-box-shadow: 0 0 5px rgb(0, 0, 0);
+    margin-top: 8.5vw;
+    padding-top:3vw
+
+}
+
+#log {
+    height: 18vw;
+}
+
+#create {
+    height: 30vw;
+}
+
+input[type=text], input[type=password] {
+    height: 2.5vw;
+    width: 18vw;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 2px;
+    margin-top: 2px;
+    font-size: 20px;
+}
+
+#createTitle {
+   position: absolute;
+   margin-bottom: 30vw;
+   font-size: 30px;
+   color:white;
+   
+
+
+
+}
+#loginTitle {
+   position: absolute;
+   margin-bottom: 20vw;
+   font-size: 35px;
+   font-style: bold;
+    color:white;
+    /* -webkit-text-stroke: 2px black; */
+
+
+}
+
+button {
+    border-radius: 25px;
+    width: 15vw;
+    height: 3vw;
+    background-color: white;
+
+    /* border:0px; */
+    font-size: 20px;
+    font-style: bold;;
+    margin-left: 1.5vw;
+    /* margin-top: 1vw; */
+    cursor: pointer;
+}
+
+button:hover {
+    /* background-color: rgb(120, 178, 229); */
+    font-size: 21px;
+    /* margin-top: .5vw; */
+
+
+}
+
+/* form {
+    display: flex;
+} */

@@ -5,43 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log-in</title>
+    <link rel="stylesheet" href="/client/reset.css">
     <link rel="stylesheet" href="login.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <header>
     <nav id="navbar">
-        <a>Music.ly</a>
+        <p>Music.ly</p>
     </nav>
 </header>
 
 <body>
     <main>
-        <section>
-            <h1>Please create your account below:</h1>
-            <h4>If you already have an account, proceed to the login</h4>
-            <form id="createAcc">
-                <label>Email:</label>
-                <input type="text" id="caEmail" placeholder="email">
-                <label>Password:</label>
-                <input type="password" id="caPassword" placeholder="password">
-                <label>First Name:</label>
-                <input type="text" id="firstName" placeholder="first name">
-                <label>Last Name:</label>
-                <input type="text" id="lastName" placeholder="last name">
-                <button>Create Account</button>
-            </form>
-    
-            <br>
-            <br>
-            <h1>Please log-in below:</h1>
-           
-            <form id="logIn">
-                <label>Email:</label>
-                <input type="text" id="liEmail" placeholder="email">
-                <label>Password:</label>
-                <input type="password" id="liPassword" placeholder="password">
-                <button>Log In</button>
-            </form>
+
+        <section id="userinputs">
+            <section id="create" class="box">
+                <h1 id="createTitle">Create Account</h1>
+                <form id="createAcc">
+                    <label>Email:</label><br>
+                    <input type="text" id="caEmail" > <br><br>
+                    <label>Password:</label><br>
+                    <input type="password" id="caPassword" ><br><br>
+                    <label>First Name:</label><br>
+                    <input type="text" id="firstName" ><br><br>
+                    <label>Last Name:</label><br>
+                    <input type="text" id="lastName" ><br><br>
+                    <button>Create Account</button>
+                </form>
+            </section>
+            <section id="log" class="box">
+                <h1 id="loginTitle">Log In</h1>
+               
+                <form id="logIn">
+                    <label>Email:</label><br>
+                    <input type="text" id="liEmail" ><br><br>
+                    <label>Password:</label><br>
+                    <input type="password" id="liPassword" ><br><br>
+                    <button>Log In</button>
+                </form>
+            </section>
         </section>
     
     </main>
