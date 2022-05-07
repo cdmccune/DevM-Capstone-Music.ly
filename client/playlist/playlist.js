@@ -1,12 +1,14 @@
 const baseURL = "http://localhost:4111"
 const songsSection = document.getElementById("songslist")
 const titleSection = document.getElementById("title")
+const titleInput = document.getElementById("titleInput")
 const container = document.getElementById("container")
 const tableBody = document.querySelector("tbody")
 const html = document.querySelector("html")
 
 const main = document.querySelector("main")
 let userid = window.localStorage.getItem("userID")
+let userName = window.localStorage.getItem("first name")
 
 
 
@@ -25,14 +27,16 @@ const showPlaylist = () => {
             div.innerHTML=`<h1>${playlistName}</h1>`
 
         } else {
+        //    <label for="playlist">Initiate Your Playlist</label>
             let form = document.createElement("form")
-            titleSection.appendChild(form)
+            titleInput.appendChild(form)
             form.innerHTML = `
-                <label for="playlist">It seems like you don't have a playlist name yet!</label>
-                <input id="playlist" placeholder="Please enter your playlist here">
-                <input type="submit" value="Save Playlist Name!">
+                <label for="playlist">Welcome, ${userName}</label>
+                <input type="text" id="playlist">
+                <input type="submit" value="Initiate Playlist">
                 `
             form.addEventListener('submit', createPlaylist)
+            titleInput.style.visibility="visible"
             return
         }
 
@@ -124,21 +128,21 @@ const createPlaylist = (e) => {
     axios.post(`${baseURL}/playlist`, body)
         .then(res => {
             let form = document.querySelector("form")
-            titleSection.removeChild(form)
+            titleInput.removeChild(form)
             
-            let div = document.createElement("div")
-            titleSection.appendChild(div)
-            div.innerHTML=`<h1>${playlist.value}</h1>`
-        })
+            let h1 = document.createElement("h1")
+            titleSection.appendChild(h1)
+            h1.innerText=`${playlist.value}`
 
-    if (songs.length == 0){
-            let div = document.createElement("div")
-            songsSection.appendChild(div)
-            div.id= "noSongs"
-            div.innerHTML = `
-            <p>You don't have any songs yet! Go to the songs tab to add some to your playlist!</p>
-            `
-    }
+
+            //Gotta fix this part too
+            // let div = document.createElement("div")
+            // songsSection.appendChild(div)
+            // div.id= "noSongs"
+            // div.innerHTML = `
+            // <p>You don't have any songs yet! Go to the songs tab to add some to your playlist!</p>
+            // `
+        })
 }
 
 

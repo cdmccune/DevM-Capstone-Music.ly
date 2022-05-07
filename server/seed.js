@@ -153,7 +153,7 @@ seed: (req, res) => {
         ('dirty dancer', 14, 'RnB'),
         ('Ne Me Quitte Pas', 14, 'RnB'),
         ('Antidote', 14, 'RnB'),
-        ('Space Jame', 14, 'RnB'),
+        ('Space Jam', 14, 'RnB'),
         ('Easy On Me', 15, 'RnB'),
         ('Set Fire To The Rain', 15, 'RnB'),
         ('River Lea', 15, 'RnB'),
