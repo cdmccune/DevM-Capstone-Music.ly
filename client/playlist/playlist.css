@@ -1,4 +1,121 @@
+body {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    margin: 0;
+	background: linear-gradient(45deg, rgb(120, 178, 229), rgb(0, 0, 0));
+	font-family: sans-serif;
+	font-weight: 100;
+    height:100%;
+}
+
+html {
+    width: 100%;
+    height:100%;
+}
+
+
+/* CSS for the Nav Bar */
+a {
+    color: black;
+  text-decoration: none;
+    font-size: 40px;
+    font-weight:bold;
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} 
+
+a:hover {   
+    font-size: 45px;
+}
+
 #navbar {
-    background-color: rgb(120, 178, 229);
+    background-color: rgba(255, 255, 255, 0.496);
     height: 10vh;
-    }
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: .5vw;
+    margin-left: .5vw;
+    margin-right: .5vw; 
+    border-radius: 20px;
+}
+
+/* For the playlist title */
+
+h1 {
+    color: white;
+    display:block;
+    font-size: 60px;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    width: 488px;
+    font-weight:bold;
+    -webkit-text-stroke: 2px rgb(0, 0, 0);
+
+}
+
+
+/* Table code */
+
+#songslist {
+    visibility: hidden;
+    display: flex;
+    width:100vw;
+    background-color: black;
+    justify-content: center;
+    margin-top: 1vw;
+
+}
+
+#container {
+    visibility:hidden;
+	position: absolute;
+	/* top: 50%; */
+	/* left: 50%; */
+	/* transform: translate(-50%, -50%); */
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+
+	th {
+		background-color: #ffffffb7;
+        color: black;
+	}
+
+
+
+	tr :hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+
+	td :hover:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+
+	

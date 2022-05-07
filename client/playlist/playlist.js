@@ -1,6 +1,10 @@
 const baseURL = "http://localhost:4111"
 const songsSection = document.getElementById("songslist")
 const titleSection = document.getElementById("title")
+const container = document.getElementById("container")
+const tableBody = document.querySelector("tbody")
+const html = document.querySelector("html")
+
 const main = document.querySelector("main")
 let userid = window.localStorage.getItem("userID")
 
@@ -19,6 +23,7 @@ const showPlaylist = () => {
             let div = document.createElement("div")
             titleSection.appendChild(div)
             div.innerHTML=`<h1>${playlistName}</h1>`
+
         } else {
             let form = document.createElement("form")
             titleSection.appendChild(form)
@@ -28,39 +33,61 @@ const showPlaylist = () => {
                 <input type="submit" value="Save Playlist Name!">
                 `
             form.addEventListener('submit', createPlaylist)
+            return
         }
 
         songs = res.data[0]
         
-        if (songs.length == 0 && playlistName){
+        if (songs.length == 0){
             let div = document.createElement("div")
             songsSection.appendChild(div)
             div.id= "noSongs"
             div.innerHTML = `
             <p>You don't have any songs yet! Go to the songs tab to add some to your playlist!</p>
             `
+            return
         }
 
         songs.forEach((song, index) => {
 
             
             //Displays the names of the songs
-            let div = document.createElement("div")
-            songsSection.appendChild(div)
-            div.id= `div${song.song_id}`
-            div.innerHTML = `
-            <p>${res.data[0][index].song_name} ${res.data[0][index].artist_name} ${res.data[0][index].genre}</p>
-            `
 
-            //Creates a delete button for each song
-            let deleteBtn = document.createElement("button")
-            div.appendChild(deleteBtn)
-            deleteBtn.value = `${song.song_id}`
-            deleteBtn.id = `btn${song.song_id}`
-            deleteBtn.textContent = `Delete from playlist`
-            deleteBtn.addEventListener('click', deleteSong)
+            let songEntry = document.createElement("td")
+            let artistEntry = document.createElement("td")
+            let genreEntry = document.createElement("td")
+
+            let row = document.createElement("tr")
+            tableBody.appendChild(row)
+            
+            songEntry.innerText = `${res.data[0][index].song_name}`
+            artistEntry.innerText = `${res.data[0][index].artist_name}`
+            genreEntry.innerText = `${res.data[0][index].genre}`
+
+            row.appendChild(songEntry)
+            row.appendChild(artistEntry)
+            row.appendChild(genreEntry)
+
+            // let div = document.createElement("div")
+            // songsSection.appendChild(div)
+            // div.id= `div${song.song_id}`
+            // div.innerHTML = `
+            // <p>${res.data[0][index].song_name} ${res.data[0][index].artist_name} ${res.data[0][index].genre}</p>
+            // `
+
+            // //Creates a delete button for each song
+            // let deleteBtn = document.createElement("button")
+            // div.appendChild(deleteBtn)
+            // deleteBtn.value = `${song.song_id}`
+            // deleteBtn.id = `btn${song.song_id}`
+            // deleteBtn.textContent = `Delete from playlist`
+            // deleteBtn.addEventListener('click', deleteSong)
+
 
          });
+
+         container.style.visibility = "visible"
+        //  html.style.height = "fit-content"
         
      })
      .catch((e)=> {window.location.reload()})
