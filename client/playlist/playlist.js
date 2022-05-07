@@ -25,7 +25,7 @@ const showPlaylist = () => {
             let div = document.createElement("div")
             titleSection.appendChild(div)
             div.innerHTML=`<h1>${playlistName}</h1>`
-
+            div.style.height = "100%"
         } else {
         //    <label for="playlist">Initiate Your Playlist</label>
             let form = document.createElement("form")
@@ -44,11 +44,12 @@ const showPlaylist = () => {
         
         if (songs.length == 0){
             let div = document.createElement("div")
-            songsSection.appendChild(div)
+            titleInput.appendChild(div)
             div.id= "noSongs"
-            div.innerHTML = `
-            <p>You don't have any songs yet! Go to the songs tab to add some to your playlist!</p>
+            div.innerHTML = `<p>Your playlist is empty...</p>
+            <p>Go to songs tab to add some!</p>
             `
+            titleInput.style.visibility="visible"
             return
         }
 
@@ -60,6 +61,7 @@ const showPlaylist = () => {
             let songEntry = document.createElement("td")
             let artistEntry = document.createElement("td")
             let genreEntry = document.createElement("td")
+            let deleteEntry = document.createElement("td")
 
             let row = document.createElement("tr")
             tableBody.appendChild(row)
@@ -67,10 +69,17 @@ const showPlaylist = () => {
             songEntry.innerText = `${res.data[0][index].song_name}`
             artistEntry.innerText = `${res.data[0][index].artist_name}`
             genreEntry.innerText = `${res.data[0][index].genre}`
+            // deleteEntry.innerHTML = `<button class="delete">Delete from playlist</button>`
+            deleteEntry.innerText = "Delete from playlist"
+            deleteEntry.value = `${song.song_id}`
+            deleteEntry.id = `${song.song_id}`
+            deleteEntry.style.cursor = "pointer"
+            deleteEntry.addEventListener('click', deleteSong)
 
             row.appendChild(songEntry)
             row.appendChild(artistEntry)
             row.appendChild(genreEntry)
+            row.appendChild(deleteEntry)
 
             // let div = document.createElement("div")
             // songsSection.appendChild(div)
@@ -102,10 +111,10 @@ const deleteSong = (e) => {
 
     axios.delete(`${baseURL}/songs?song=${songid}&userID=${userid}`)
         .then(()=> {
-            let button = document.getElementById(`btn${songid}`)
-            let div = button.parentNode
-            let parent = div.parentNode
-            parent.removeChild(div)
+            let remove = document.getElementById(`${songid}`)
+            let parent = remove.parentNode
+            let grandparent = parent.parentNode
+            grandparent.removeChild(parent)
         })
 }
 
@@ -129,19 +138,19 @@ const createPlaylist = (e) => {
         .then(res => {
             let form = document.querySelector("form")
             titleInput.removeChild(form)
+            // titleInput.innerHTML=""
             
             let h1 = document.createElement("h1")
             titleSection.appendChild(h1)
             h1.innerText=`${playlist.value}`
 
 
-            //Gotta fix this part too
-            // let div = document.createElement("div")
-            // songsSection.appendChild(div)
-            // div.id= "noSongs"
-            // div.innerHTML = `
-            // <p>You don't have any songs yet! Go to the songs tab to add some to your playlist!</p>
-            // `
+            let div = document.createElement("div")
+            titleInput.appendChild(div)
+            div.id= "noSongs"
+            div.innerHTML = `<p>Your playlist is empty...</p>
+            <p>Go to songs tab to add some!</p>
+            `
         })
 }
 

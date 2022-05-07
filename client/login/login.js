@@ -43,7 +43,7 @@ const handleLogIn = (e) => {
             console.log(res.data)
             window.localStorage.setItem("first name", res.data['firstname'])
             window.localStorage.setItem("userID", res.data['userid'])
-            window.location.href = `../home/home.html`
+            window.location.href = `../playlist/playlist.html`
         })
 
 }
