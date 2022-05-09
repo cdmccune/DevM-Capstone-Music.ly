@@ -1,6 +1,18 @@
+/* General Styling */
+
 body {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    margin: 0;
+	background: linear-gradient(45deg, rgb(120, 178, 229), rgb(0, 0, 0));
+	font-family: sans-serif;
+	font-weight: 100;
+    min-height: 100%;
 }
+
+html {
+    min-height:100%;
+}
+
+/* Navbar */
 
 a {
     color: black;
@@ -12,11 +24,11 @@ a {
 } 
 
 a:hover {   
-    font-size: 45px;
+    color:white;
 }
 
 #navbar {
-    background-color: rgb(120, 178, 229);
+    background-color: rgba(255, 255, 255, 0.496);
     height: 10vh;
     display: flex;
     justify-content: space-evenly;
@@ -24,5 +36,83 @@ a:hover {
     margin-top: .5vw;
     margin-left: .5vw;
     margin-right: .5vw; 
+    border-radius: 20px;
 
-    }
+} 
+
+#navbarwrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+}
+
+
+    /* For collapsible content*/
+
+#artists {
+    margin-top: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.collapsible {
+    position: relative;
+    padding-bottom: 0.5em;
+    background-color: rgba(255, 255, 255, 0.496);
+    width:78vw;
+    border-radius: 10px;
+    /* padding-left: 1vw;
+    padding-right: 1vw; */
+    padding: 1vw;
+    /* display: flex; */
+}
+
+h1 {
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight:bold;
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+    width:max-content
+}
+
+
+.collapsible:not(.open) > * {
+    display: none;
+}
+
+.collapsible:not(.open) > h1:first-child {
+    display: block;
+}
+
+.collapsible > .toggler {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+
+    /* background: #fff; */
+    text-align: center;
+    cursor: pointer;
+}
+.collapsible > .toggler::after {
+    content: "\25bc";
+}
+.collapsible.open > .toggler::after {
+    content: "\25b2";
+}
+
+.collapsible > .toggler:hover {   
+    color:white;
+    -webkit-text-stroke: 0 rgb(255, 255, 255);
+}
+
+.content {
+    height: 10vw;
+    display: flex;
+
+}

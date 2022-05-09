@@ -1,6 +1,8 @@
 require('dotenv').config()
-const{CONNECTION_STRING} = process.env
+const{CONNECTION_STRING, CLIENT_ID, CLIENT_SECRET} = process.env
 const Sequelize = require("sequelize")
+const request = require('request'); // "Request" library
+
 
 const sequelize = new Sequelize(CONNECTION_STRING, {
     dialect: 'postgres',
@@ -186,5 +188,52 @@ module.exports = {
         `).then(dbRes => {
             res.sendStatus(200)
         })
+    },
+
+    spotifyAuth: (req, res) => {
+
+            // your application requests authorization
+            let authOptions = {
+              url: 'https://accounts.spotify.com/api/token',
+              headers: {
+                'Authorization': 'Basic ' + (new Buffer(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'))
+              },
+              form: {
+                grant_type: 'client_credentials'
+              },
+              json: true
+            };
+
+            request.post(authOptions, function(error, response, body) {
+              
+                // if (!error && response.statusCode === 200) {
+                //     var token = body.access_token;
+                //     console.log(body)
+                //   }
+
+
+                if (!error && response.statusCode === 200) {
+            
+                // use the access token to access the Spotify Web API
+                var token = body.access_token;
+                res.status(200).send(token)
+                // const artist = "taylorswift"
+                // const options = {
+                //   url: `https://api.spotify.com/v1/search?type=artist&q=${artist}&limit=1`,
+                //   headers: {
+                //     'Authorization': 'Bearer ' + token
+                //   },
+                //   json: true
+                // };
+                // request.get(options, function(error, response, body) {
+                //   console.log(body.artists.items);
+                // });
+              }
+        
+              
+            });
+        
+    }, getArtist: (req,res) => {
+
     }
 }
