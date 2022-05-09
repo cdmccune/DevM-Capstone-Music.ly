@@ -1,5 +1,6 @@
 const baseURL = "http://localhost:4111"
-
+const container = document.getElementById("container")
+const tableBody = document.querySelector("tbody")
 const form = document.querySelector("form")
 const section = document.querySelector("section")
 
@@ -24,8 +25,8 @@ const getUserSongs = () => {
 const getSongs = (e)=>{
     e.preventDefault()
 
-    //Deletes all the previosu search results
-    section.innerHTML=""
+    //Deletes all the previous search results
+    tableBody.innerHTML=""
 
     //Checks which checkboxes are checked, and unchecks them 
     const genres = document.getElementsByName("genre")
@@ -60,30 +61,49 @@ const getSongs = (e)=>{
 
             // Loops over the songs from checked boxes and creates titles for each
             songsArr.forEach((song, index) => {
-                let div = document.createElement("div")
-                    section.appendChild(div)
-                    div.id= `div${song}`
-                    div.innerHTML = `
-                    <p>${res.data[0][index].song_name} ${res.data[0][index].artist_name}</p>
-                    `
+                // let div = document.createElement("div")
+                //     section.appendChild(div)
+                //     div.id= `div${song}`
+                //     div.innerHTML = `
+                //     <p>${res.data[0][index].song_name} ${res.data[0][index].artist_name}</p>
+                //     `
+
+                let songEntry = document.createElement("td")
+                let artistEntry = document.createElement("td")
+                let genreEntry = document.createElement("td")
+                let deleteEntry = document.createElement("td")
+                let addEntry = document.createElement("td")
+
+    
+                let row = document.createElement("tr")
+                tableBody.appendChild(row)
+                
+                songEntry.innerText = `${res.data[0][index].song_name}`
+                artistEntry.innerText = `${res.data[0][index].artist_name}`
+                genreEntry.innerText = `${res.data[0][index].genre}`
+
+                row.appendChild(songEntry)
+                row.appendChild(artistEntry)
+                row.appendChild(genreEntry)
 
                 // Adds an add or delete button depending on if the users' playlist contained the song or not
                 if (playlistSongs.includes(song)) {
-                    let deleteBtn = document.createElement("button")
-                    div.appendChild(deleteBtn)
-                    deleteBtn.value = `${song}`
-                    deleteBtn.id = `btn${song}`
-                    deleteBtn.textContent = `Delete from playlist`
-                    deleteBtn.addEventListener('click', deleteSong)
+                    deleteEntry.innerText = "Delete from playlist"
+                    deleteEntry.value = `${song}`
+                    deleteEntry.id = `${song}`
+                    deleteEntry.style.cursor = "pointer"
+                    row.appendChild(deleteEntry)
+                    deleteEntry.addEventListener('click', deleteSong)
                 } else {
-                    let addBtn = document.createElement("button")
-                    div.appendChild(addBtn)
-                    addBtn.value = `${song}`
-                    addBtn.id = `btn${song}`
-                    addBtn.textContent = `Add from playlist`
-                    addBtn.addEventListener('click', addSong)
+                    addEntry.innerText = "Add to playlist"
+                    addEntry.value = `${song}`
+                    addEntry.id = `${song}`
+                    addEntry.style.cursor = "pointer"
+                    row.appendChild(addEntry)
+                    addEntry.addEventListener('click', addSong)
                 }
             })
+            container.style.visibility = "visible"
         })
 }
 
@@ -94,16 +114,23 @@ const addSong = (e) => {
 
     axios.post(`${baseURL}/songs?song=${songid}&userID=${userid}`)
         .then(()=> {
-            let button = document.getElementById(`btn${songid}`)
-            let div = button.parentNode
-            div.removeChild(button)
 
-            let deleteBtn = document.createElement("button")
-            div.appendChild(deleteBtn)
-            deleteBtn.value = `${songid}`
-            deleteBtn.id = `btn${songid}`
-            deleteBtn.textContent = `Delete from playlist`
-            deleteBtn.addEventListener('click', deleteSong)
+            let entry = document.getElementById(`${songid}`)
+            entry.removeEventListener("click", addSong)
+
+            entry.innerText = "Delete from playlist"
+            entry.addEventListener("click", deleteSong)
+
+            // let button = document.getElementById(`btn${songid}`)
+            // let div = button.parentNode
+            // div.removeChild(button)
+
+            // let deleteBtn = document.createElement("button")
+            // div.appendChild(deleteBtn)
+            // deleteBtn.value = `${songid}`
+            // deleteBtn.id = `btn${songid}`
+            // deleteBtn.textContent = `Delete from playlist`
+            // deleteBtn.addEventListener('click', deleteSong)
            
         })
 }
@@ -115,21 +142,32 @@ const deleteSong = (e) => {
 
     axios.delete(`${baseURL}/songs?song=${songid}&userID=${userid}`)
         .then(()=> {
-            let button = document.getElementById(`btn${songid}`)
-            let div = button.parentNode
-            div.removeChild(button)
+            let entry = document.getElementById(`${songid}`)
+            entry.removeEventListener("click", deleteSong)
 
-            let addBtn = document.createElement("button")
-            div.appendChild(addBtn)
-            addBtn.value = `${songid}`
-            addBtn.id = `btn${songid}`
-            addBtn.textContent = `Add from playlist`
-            addBtn.addEventListener('click', addSong)
+            entry.innerText = "Add to Playlist"
+            entry.addEventListener("click", addSong)
+
+            //FIX THIS
+            // let addBtn = document.createElement("button")
+            // div.appendChild(addBtn)
+            // addBtn.value = `${songid}`
+            // addBtn.id = `btn${songid}`
+            // addBtn.textContent = `Add from playlist`
+            // addBtn.addEventListener('click', addSong)
         })
 
 }
 
 
 form.addEventListener("submit", getSongs)
-// let usersSongs = getUserSongs()
-// console.log(usersSongs)
+
+
+//brings back to logout screen if user doesn't have a userID in local storage
+const notLoggedIn = () => {
+    if (!window.localStorage.getItem("userID")) {
+        window.location.href = `../login/login.html`
+    }
+}
+
+notLoggedIn()

@@ -84,7 +84,7 @@ module.exports = {
         let genresAdded = []
 
         sequelize.query(`
-            SELECT a.artist_name, s.song_name, s.song_id
+            SELECT a.artist_name, s.song_name, s.song_id, s.genre
             FROM songs AS s
             JOIN artists AS a ON s.artist_id = a.artist_id
             WHERE ${genreListCustom};

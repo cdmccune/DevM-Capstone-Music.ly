@@ -69,7 +69,7 @@ const showPlaylist = () => {
             songEntry.innerText = `${res.data[0][index].song_name}`
             artistEntry.innerText = `${res.data[0][index].artist_name}`
             genreEntry.innerText = `${res.data[0][index].genre}`
-            // deleteEntry.innerHTML = `<button class="delete">Delete from playlist</button>`
+
             deleteEntry.innerText = "Delete from playlist"
             deleteEntry.value = `${song.song_id}`
             deleteEntry.id = `${song.song_id}`
@@ -155,10 +155,9 @@ const createPlaylist = (e) => {
 }
 
 
+//brings back to logout screen if user doesn't have a userID in local storage
+const notLoggedIn = () => {
+    !window.localStorage.getItem("userID") ? window.location.href = `../login/login.html` : showPlaylist()
+}
 
-
-
-
-
-
-showPlaylist()
+notLoggedIn()

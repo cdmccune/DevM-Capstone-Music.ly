@@ -11,11 +11,11 @@
 </head>
 <body> 
     <header>
+        <div id="navbarwrap">     
         <nav id="navbar">
-            <a href="/client/home/home.html">Music.ly</a>
+            <a href="/client/playlist/playlist.html">My Playlist</a>
             <a href="/client/artists/artists.html">Artists</a>
             <a href="/client/songs/songs.html">Songs</a>
-            <a href="/client/playlist/playlist.html">My Playlist</a>
             <a id="logOut" href="/client/login/login.html">Log Out
                 <script>
                     let logOut = document.getElementById("logOut")
@@ -25,32 +25,68 @@
                 </script>
             </a>
         </nav>
+        </div>  
     </header>
 
     <main>
-        <h1>Songs</h1>
-        <form id="genres">
-            <h3>Choose The Genres You Want To See</h3>
-            <fieldset>
-                <input id="alternative" type= "checkbox" name="genre" value="Alternative">
-                <label for="alternative">Alternative</label> <br>
-                <input id="classic" type= "checkbox" name="genre" value="Classic">
-                <label for="classic">Classic</label> <br>
-                <input id="pop" type= "checkbox" name="genre" value="Pop">
-                <label for="pop">Pop</label> <br>
-                <input id="R&B" type= "checkbox" name="genre" value="RnB">
-                <label for="R&B">R&B</label> <br>
-                <input id="rap" type= "checkbox" name="genre" value="Rap">
-                <label for="rap">Rap</label> <br>
-                <br>
-                <input type="submit" value="Search!">
-            </fieldset>
+        <section id="searchParams">
+            <form id="genres">
+                <h3>Select Genres</h3>
+                <fieldset>
+                    <div id="column1" class="column">
+                        <div>
+                            <input id="alternative" type= "checkbox" name="genre" value="Alternative">
+                            <label for="alternative">Alternative</label> 
+                        </div>
+                        <div>
+                            <input id="classic" type= "checkbox" name="genre" value="Classic">
+                            <label for="classic">Classic</label> 
+                        </div>
+                        <div>
+                            <input id="pop" type= "checkbox" name="genre" value="Pop">
+                            <label for="pop">Pop</label> 
+                        </div>
+                        <div>
+                            <input id="pop" type= "checkbox" name="genre" value="Pop">
+                            <label for="pop">Pop</label> 
+                        </div>
+                    </div>
+                    <div class="column" id="column2">
+                        <div>
+                            <input id="R&B" type= "checkbox" name="genre" value="RnB">
+                            <label for="R&B">R&B</label> 
+                        </div>
+                        <div>
+                            <input id="rap" type= "checkbox" name="genre" value="Rap">
+                            <label for="rap">Rap</label> 
+                        </div>
+                        <input type="submit" value="Search!">
+                    </div>
+                </fieldset>
+        </section>
             
         </form>
 
         <section id="songslist">
-            
+            <div id="container">
+                <table>
+
+                    <thead>
+                        <tr>
+                            <th>Song</th>
+                            <th>Artist</th>
+                            <th>Genre</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+            </div>
         </section>
+
     </main>
     
     

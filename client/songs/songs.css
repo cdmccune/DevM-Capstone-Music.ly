@@ -1,6 +1,18 @@
+/* General Styling */
+
 body {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    margin: 0;
+	background: linear-gradient(45deg, rgb(120, 178, 229), rgb(0, 0, 0));
+	font-family: sans-serif;
+	font-weight: 100;
+    min-height: 100%;
 }
+
+html {
+    min-height:100%;
+}
+
+/* Navbar */
 
 a {
     color: black;
@@ -12,11 +24,11 @@ a {
 } 
 
 a:hover {   
-    font-size: 45px;
+    color:white;
 }
 
 #navbar {
-    background-color: rgb(120, 178, 229);
+    background-color: rgba(255, 255, 255, 0.496);
     height: 10vh;
     display: flex;
     justify-content: space-evenly;
@@ -24,9 +36,166 @@ a:hover {
     margin-top: .5vw;
     margin-left: .5vw;
     margin-right: .5vw; 
+    border-radius: 20px;
 
-    }
+} 
 
-p {
+#navbarwrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  width: 100%;
+}
+
+
+/* CSS for the search form */
+
+#searchParams {
+    width: 100%;
+    height:auto;
+    display: flex;
+    justify-content: center;
+    /* background-color: black; */
+    margin-top: 15vh;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.496);
+    height: auto;
+    width: auto;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+fieldset {
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    width: 20vw;
+    height: 7vw;
+    margin-bottom: .5vw;
+    font-size: 20px;
+}
+
+h3 {
+    color: black;
+    text-decoration: none;
+    font-size: 30px;
+    font-weight:bold;
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+    margin-bottom:1vw;
+    margin-top: 1vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height:7vw;
+
+}
+
+label {
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+
+}
+
+label:hover {
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+}
+
+input[type=checkbox] {
+    margin-bottom: .5vw;
     margin-left: 2vw;
+}
+
+input[type=submit] {
+    height: 3vw;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    width:8vw;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight:bold;
+    margin-bottom: .5vw;
+    margin-right: 1vw;
+    margin-top: .25vw;
+}
+
+input[type=submit]:hover {
+    color:white;
+    background-color: rgba(255, 255, 255, 0.157);
+}
+
+/* CSS for the table*/
+
+
+#songslist {
+    visibility: hidden;
+    display: flex;
+    width:100vw;
+    background-color: black;
+    justify-content: center;
+    margin-top: 1vw;
+
+}
+
+ #container {
+    visibility:hidden;
+    margin-bottom: 5vw;
+}
+
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+tr {
+    -webkit-text-stroke: .75px rgb(255, 255, 255);
+}
+
+th,
+td {
+	padding: 15px;
+	background-color: rgba(255,255,255,0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+}
+
+
+th {
+	background-color: #ffffffb7;
+    color: black;
+}
+
+
+
+tr :hover {
+	background-color: rgba(255,255,255,0.3);
+}
+
+td :hover:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: -9999px;
+	bottom: -9999px;
+	background-color: rgba(255,255,255,0.2);
+	z-index: -1;
 }

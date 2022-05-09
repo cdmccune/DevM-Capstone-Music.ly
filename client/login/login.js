@@ -86,7 +86,8 @@ const handleCreateAcc = (e) => {
         .then(res => {
             window.localStorage.setItem("first name", firstName.value)
             window.localStorage.setItem("userID", res.data['userid'])
-            window.location.href = '../home/home.html'
+            window.location.href = `../playlist/playlist.html`
+
         })
         .catch(err => {console.log('hi')})
 }

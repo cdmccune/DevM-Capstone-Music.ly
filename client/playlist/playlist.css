@@ -1,20 +1,19 @@
 body {
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
     margin: 0;
 	background: linear-gradient(45deg, rgb(120, 178, 229), rgb(0, 0, 0));
 	font-family: sans-serif;
 	font-weight: 100;
-    /* overflow: auto; */
     min-height: 100%;
 }
 
 html {
-    /* width: 100%; */
     min-height:100%;
 }
 
 
 /* CSS for the Nav Bar */
+/* NEED TO HIGHLIGHT CURRENT PAGE I AM ON */
+
 a {
     color: black;
   text-decoration: none;
@@ -93,6 +92,10 @@ table {
     border-radius: 10px;
 }
 
+tr {
+    -webkit-text-stroke: .75px rgb(255, 255, 255);
+}
+
 th,
 td {
 	padding: 15px;
@@ -102,6 +105,7 @@ td {
 
 th {
 	text-align: left;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
 }
 
 
@@ -188,7 +192,7 @@ input[type=submit] {
 }
 input[type=submit]:hover {
     color: rgb(255, 255, 255);
-
+    background-color: rgba(255, 255, 255, 0.157);
     /* font-size: 21px; */
 
 }

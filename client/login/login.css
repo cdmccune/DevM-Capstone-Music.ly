@@ -1,20 +1,37 @@
-main {
+body {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
+    margin: 0;
+	background: linear-gradient(45deg, rgb(120, 178, 229), rgb(0, 0, 0));
+	font-family: sans-serif;
+	font-weight: 100;
+    /* overflow: auto; */
+    min-height: 100%;
 }
 
 #navbar {
-    background-color: rgb(120, 178, 229);
+    background-color: rgba(255, 255, 255, 0.496);
     height: 10vh;
-    font-size: 50px;
-    font-weight:bold;
-    -webkit-text-stroke: 2px white;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     display: flex;
-    justify-content: left;
     align-items: center;
-    }
+    margin-top: .5vw;
+    margin-left: .5vw;
+    margin-right: .5vw; 
+    border-radius: 20px;
+
+} 
+
 p {
     margin-left: 2vw;
+    color: black;
+  text-decoration: none;
+    font-size: 50px;
+    font-weight:bold;
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} 
+
+p:hover {   
+    color:white;
 }
     
 
@@ -27,7 +44,7 @@ p {
 
 .box {
     margin: 1.5vw;
-    background-color: rgb(120, 178, 229);
+    background-color: rgba(255, 255, 255, 0.496);
     width: 25vw;
     display: flex;
     flex-direction: column;
@@ -36,12 +53,15 @@ p {
     border-radius: 5%;
     -webkit-box-shadow: 0 0 5px rgb(0, 0, 0);
     margin-top: 8.5vw;
-    padding-top:3vw
+    /* padding-top:3vw */
+
+    
 
 }
 
 #log {
-    height: 18vw;
+    height: 19.5vw;
+    
 }
 
 #create {
@@ -49,6 +69,7 @@ p {
 }
 
 input[type=text], input[type=password] {
+    background-color: rgba(255, 255, 255, 0);
     height: 2.5vw;
     width: 18vw;
     border-radius: 10px;
@@ -58,45 +79,63 @@ input[type=text], input[type=password] {
     font-size: 20px;
 }
 
-#createTitle {
-   position: absolute;
-   margin-bottom: 30vw;
-   font-size: 30px;
-   color:white;
-   
-
-
+input[type=text]:hover, input[type=password]:hover {
+    background-color: rgb(255, 255, 255);
 
 }
-#loginTitle {
-   position: absolute;
-   margin-bottom: 20vw;
-   font-size: 35px;
-   font-style: bold;
+
+label {
+    /* font-weight:600 */
+    /* color:white */
+    font-style: bold;
+	font-family: sans-serif;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+}
+
+label:hover {
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+}
+
+#createTitle {
+    color: black;
+    text-decoration: none;
+    font-size: 35px;
+    font-weight:bold;
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+    margin-bottom:1vw;
+}
+#createTitle:hover {
     color:white;
-    /* -webkit-text-stroke: 2px black; */
+}
 
-
+#loginTitle {
+    color: black;
+    text-decoration: none;
+    font-size: 35px;
+    font-weight:bold;
+    -webkit-text-stroke: 1.5px rgb(255, 255, 255);
+    margin-bottom:1vw;
+}
+#loginTitle:hover {
+    color:white;
 }
 
 button {
-    border-radius: 25px;
-    width: 15vw;
     height: 3vw;
-    background-color: white;
-
-    /* border:0px; */
-    font-size: 20px;
-    font-style: bold;;
     margin-left: 1.5vw;
-    /* margin-top: 1vw; */
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 20px;
+    width:15vw;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight:bold;
+    margin-bottom: .5vw;
 }
 
 button:hover {
-    /* background-color: rgb(120, 178, 229); */
-    font-size: 21px;
-    /* margin-top: .5vw; */
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.157);
 
 
 }
