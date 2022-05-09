@@ -20,7 +20,6 @@ a {
     font-size: 40px;
     font-weight:bold;
     -webkit-text-stroke: 1.5px rgb(255, 255, 255);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 } 
 
 a:hover {   
@@ -48,8 +47,25 @@ a:hover {
   width: 100%;
 }
 
+/* For the readme */
 
-    /* For collapsible content*/
+#readme {
+    position:absolute;
+    background-color: rgba(255, 255, 255, 0.496);
+    height:auto;
+    width:15vw;
+    margin-left: 5vw;
+    font-size: 20px;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 1vw;
+    text-align: center;
+
+}
+
+
+/* For collapsible content*/
 
 #artists {
     margin-top: 5vw;
@@ -62,12 +78,14 @@ a:hover {
     position: relative;
     padding-bottom: 0.5em;
     background-color: rgba(255, 255, 255, 0.496);
-    width:78vw;
+    width:45vw;
     border-radius: 10px;
     /* padding-left: 1vw;
     padding-right: 1vw; */
     padding: 1vw;
     /* display: flex; */
+    min-height: 2.5vw;
+    margin-bottom: 2vw;
 }
 
 h1 {
@@ -76,7 +94,9 @@ h1 {
     font-size: 30px;
     font-weight:bold;
     -webkit-text-stroke: 1.5px rgb(255, 255, 255);
-    width:max-content
+    width:max-content;
+    position: absolute;
+    
 }
 
 
@@ -94,7 +114,7 @@ h1 {
     bottom: 0;
     display: block;
     width: 100%;
-
+    /* height: 4vw; */
     /* background: #fff; */
     text-align: center;
     cursor: pointer;
@@ -114,5 +134,27 @@ h1 {
 .content {
     height: 10vw;
     display: flex;
+    justify-content: space-between;
 
 }
+
+h2 {
+    font-size: 20px;
+
+}
+
+.artisttext {
+    margin-top: 3.5vw;
+    margin-left: 2vw;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+    width: 30vw;
+}
+
+img {
+    object-fit: cover;
+    width:10vw;
+    height:10vw;
+  }

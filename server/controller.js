@@ -1,7 +1,7 @@
 require('dotenv').config()
 const{CONNECTION_STRING, CLIENT_ID, CLIENT_SECRET} = process.env
 const Sequelize = require("sequelize")
-const request = require('request'); // "Request" library
+const request = require('request');
 
 
 const sequelize = new Sequelize(CONNECTION_STRING, {
@@ -33,13 +33,14 @@ module.exports = {
                 }
             })
     },
+
     createAcc: (req, res) => {
         sequelize.query(`
         SELECT email
         FROM users
         WHERE email = '${req.body.email}';
         `).then(dbRes => {
-                if (dbRes[1].rows.length > 1) {
+                if (dbRes[1].rows.length >= 1) {
                     res.status(400).send("Error: Email already exists")
                     return
                 } else {
@@ -105,41 +106,6 @@ module.exports = {
                 })
                 
             })
-        
-
-        //lets try to add logic in the sequel query, so try to do it for all 5 of the genres
-        // genreList.forEach(genre => {
-
-        //     genresAdded.push(1)
-        //     sequelize.query(`
-        //     SELECT a.artist_name, s.song_name, s.song_id
-        //     FROM songs AS s
-        //     JOIN artists AS a ON s.artist_id = a.artist_id
-        //     WHERE s.genre = '${genre}';
-
-            
-        //     `)
-        //     .then(dbRes => {
-        //         sequelize.query(`SELECT song_id
-        //         FROM playlistsong AS ps
-        //         JOIN playlists as p ON ps.playlist_id = p.playlist_id
-        //         WHERE p.user_id = '${userid}';`)
-        //         .then(dbRes2 => {
-                    
-        //             // resSongs.push(1)
-        //             resSongs.push(dbRes[0])
-
-        //             console.log(`genre list${genreList.length}`)
-        //             console.log(`genre added${genresAdded.length}`)
-        //             //Why do I need to do this within the .then and not outside. If I do it outside any changes I make to resSongs get deleted.
-        //             if (genreList.length == genresAdded.length) {
-        //                 console.log('hi')
-        //                 res.status(200).send([resSongs[0],dbRes2[0]])
-        //             } 
-        //         })
-                
-        //     })
-        // })
     },
 
     deleteSong: (req,res) => {
@@ -187,7 +153,7 @@ module.exports = {
             WHERE playlist_id = ${userid}
         `).then(dbRes => {
             res.sendStatus(200)
-        })
+        }).catch(err=> {res.status(200).send("You must only use letters in your playlist name!")})
     },
 
     spotifyAuth: (req, res) => {
@@ -206,34 +172,36 @@ module.exports = {
 
             request.post(authOptions, function(error, response, body) {
               
-                // if (!error && response.statusCode === 200) {
-                //     var token = body.access_token;
-                //     console.log(body)
-                //   }
-
 
                 if (!error && response.statusCode === 200) {
-            
-                // use the access token to access the Spotify Web API
-                var token = body.access_token;
+                let token = body.access_token;
                 res.status(200).send(token)
-                // const artist = "taylorswift"
-                // const options = {
-                //   url: `https://api.spotify.com/v1/search?type=artist&q=${artist}&limit=1`,
-                //   headers: {
-                //     'Authorization': 'Bearer ' + token
-                //   },
-                //   json: true
-                // };
-                // request.get(options, function(error, response, body) {
-                //   console.log(body.artists.items);
-                // });
               }
         
               
             });
         
-    }, getArtist: (req,res) => {
+    }, 
+    
+    artistInfo: (req,res) => {
+        let artist = req.query.artist
+        let token = req.query.token
 
+        const options = {
+              url: `https://api.spotify.com/v1/search?type=artist&q=${artist}&limit=1`,
+              headers: {
+                'Authorization': 'Bearer ' + token
+              },
+              json: true
+            };
+            request.get(options, function(error, response, body) {
+              let artistData = {
+                  popularity: body.artists.items[0].popularity,
+                  genres: body.artists.items[0].genres,
+                  followers: body.artists.items[0].followers.total,
+                  image: body.artists.items[0].images[0].url
+              }
+              res.status(200).send(artistData)
+            });
     }
 }

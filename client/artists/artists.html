@@ -12,30 +12,324 @@
 <header>
     <nav id="navbar">
         <a href="/client/playlist/playlist.html">My Playlist</a>
-            <a href="/client/artists/artists.html">Artists</a>
-            <a href="/client/songs/songs.html">Songs</a>
-            <a id="logOut" href="/client/login/login.html">Log Out
+        <a href="/client/artists/artists.html"
+        style="
+        color:white;
+        -webkit-text-stroke: 0 rgb(255, 255, 255);
+        "
+        >Artists</a>
+        <a href="/client/songs/songs.html">Songs</a>
+        <a id="logOut" href="/client/login/login.html">Log Out
                 <script>
                     let logOut = document.getElementById("logOut")
                     logOut.addEventListener("click", ()=>{
                         localStorage.clear()
                     })
                 </script>
-            </a>
+        </a>
     </nav>
 </header>
 <body>
     <main>
+        <section id="readme">Browse this page to see infomation about your favorite artists pulled from directly from Spotify!</section>
         <section id="artists">
-            <div class="collapsible" id="Taylor Swift">
+            <div class="collapsible" id="TheLumineers">
+                <h1>The Lumineers</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="BonIver">
+                <h1>Bon Iver</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="JamesBlake">
+                <h1>James Blake</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="Queen">
+                <h1>Queen</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="BillyJoel">
+                <h1>Billy Joel</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="TheBeatles">
+                <h1>The Beatles</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="The Beachboys">
+                <h1>The Beach Boys</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="TaylorSwift">
                 <h1>Taylor Swift</h1>
                 <div class="content">
                     <div class="artisttext">
                         <h2 class="popularity">Popularity: </h2>
                         <h2 class="genres">Genre(s): </h2>
-                        <h2 class="topTracks">Top Tracks: </h2>
+                        <h2 class="followers">Top Tracks: </h2>
                     </div>
-                    <p class="bio">bio</p>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="OliviaRodrigo">
+                <h1>Olivia Rodrigo</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="BROCKHAMPTON">
+                <h1>BROCKHAMPTON</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="TwentyOnePilots">
+                <h1>Twenty One Pilots</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="FrankOcean">
+                <h1>Frank Ocean</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="UMI">
+                <h1>UMI</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="OrionSun">
+                <h1>Orion Sun</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="Adele">
+                <h1>Adele</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="Kanye">
+                <h1>Kanye</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="ChancetheRapper">
+                <h1>Chance the Rapper</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="JCole">
+                <h1>J Cole</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="KenrickLamar">
+                <h1>Kendrick Lamar</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="Drake">
+                <h1>Drake</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="SylanEsso">
+                <h1>Sylvan Esso</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="RY X">
+                <h1>RY X</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="Joji">
+                <h1>Joji</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="Daughter">
+                <h1>Daughter</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
+                    <img>
+                </div>
+            </div>
+            <div class="collapsible" id="Bruno Major">
+                <h1>Bruno Major</h1>
+                <div class="content">
+                    <div class="artisttext">
+                        <h2 class="popularity">Popularity: </h2>
+                        <h2 class="genres">Genre(s): </h2>
+                        <h2 class="followers">Top Tracks: </h2>
+                    </div>
+                    
                     <img>
                 </div>
             </div>

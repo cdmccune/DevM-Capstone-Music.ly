@@ -6,6 +6,7 @@ const section = document.querySelector("section")
 
 
 //Gets all the songs that are currently on the users playlist
+
 const getUserSongs = () => {
     let body = {
         userid: window.localStorage.getItem("userID")
@@ -21,14 +22,20 @@ const getUserSongs = () => {
         })
 }
 
+
 //Print all the songs and "add" or "delete" button when the user does a search
+
 const getSongs = (e)=>{
     e.preventDefault()
 
+
     //Deletes all the previous search results
+
     tableBody.innerHTML=""
 
+
     //Checks which checkboxes are checked, and unchecks them 
+
     const genres = document.getElementsByName("genre")
     let checkedgenres = []
     genres.forEach(checkbox => {
@@ -39,16 +46,18 @@ const getSongs = (e)=>{
     });
 
     
-    
-
     let userid = window.localStorage.getItem("userID")
     let genreList =  checkedgenres
 
+
     //Does a post request with what songs are in those genres
+
     axios.get(`${baseURL}/songs?genre=${genreList}&userID=${userid}`)
         .then(res => {
 
+
             //Creates an array for all the songs in the users' playlist and all the songs in checked boxes
+
             let playlistSongs = []
             let songsArr = []
             for (i=0; i<res.data[1].length; i++){
@@ -60,13 +69,8 @@ const getSongs = (e)=>{
 
 
             // Loops over the songs from checked boxes and creates titles for each
+
             songsArr.forEach((song, index) => {
-                // let div = document.createElement("div")
-                //     section.appendChild(div)
-                //     div.id= `div${song}`
-                //     div.innerHTML = `
-                //     <p>${res.data[0][index].song_name} ${res.data[0][index].artist_name}</p>
-                //     `
 
                 let songEntry = document.createElement("td")
                 let artistEntry = document.createElement("td")
@@ -86,7 +90,9 @@ const getSongs = (e)=>{
                 row.appendChild(artistEntry)
                 row.appendChild(genreEntry)
 
+
                 // Adds an add or delete button depending on if the users' playlist contained the song or not
+
                 if (playlistSongs.includes(song)) {
                     deleteEntry.innerText = "Delete from playlist"
                     deleteEntry.value = `${song}`
@@ -120,18 +126,6 @@ const addSong = (e) => {
 
             entry.innerText = "Delete from playlist"
             entry.addEventListener("click", deleteSong)
-
-            // let button = document.getElementById(`btn${songid}`)
-            // let div = button.parentNode
-            // div.removeChild(button)
-
-            // let deleteBtn = document.createElement("button")
-            // div.appendChild(deleteBtn)
-            // deleteBtn.value = `${songid}`
-            // deleteBtn.id = `btn${songid}`
-            // deleteBtn.textContent = `Delete from playlist`
-            // deleteBtn.addEventListener('click', deleteSong)
-           
         })
 }
 
@@ -147,14 +141,6 @@ const deleteSong = (e) => {
 
             entry.innerText = "Add to Playlist"
             entry.addEventListener("click", addSong)
-
-            //FIX THIS
-            // let addBtn = document.createElement("button")
-            // div.appendChild(addBtn)
-            // addBtn.value = `${songid}`
-            // addBtn.id = `btn${songid}`
-            // addBtn.textContent = `Add from playlist`
-            // addBtn.addEventListener('click', addSong)
         })
 
 }
@@ -164,6 +150,7 @@ form.addEventListener("submit", getSongs)
 
 
 //brings back to logout screen if user doesn't have a userID in local storage
+
 const notLoggedIn = () => {
     if (!window.localStorage.getItem("userID")) {
         window.location.href = `../login/login.html`

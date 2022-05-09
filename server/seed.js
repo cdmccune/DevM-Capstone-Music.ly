@@ -26,7 +26,8 @@ seed: (req, res) => {
             email VARCHAR(50),
             password VARCHAR(25),
             first_name VARCHAR(25),
-            last_name VARCHAR(25)
+            last_name VARCHAR(25),
+            UNIQUE(email)
         );
         
         CREATE TABLE artists (
@@ -81,7 +82,12 @@ seed: (req, res) => {
         ('Chance the Rapper'),
         ('J Cole'),
         ('Kendrick Lamar'),
-        ('Drake');
+        ('Drake'),
+        ('Sylvan Esso'),
+        ('RY X'),
+        ('Joji'),
+        ('Daughter'),
+        ('Bruno Major');
 
         INSERT INTO songs (song_name, artist_id, genre)
         VALUES ('Ophelia', 1, 'Alternative'),
@@ -183,7 +189,32 @@ seed: (req, res) => {
         ('Passionfruit', 20, 'Rap'),
         ('Laugh Now Cry Later', 20, 'Rap'),
         ('Controlla', 20, 'Rap'),
-        ('Chicago Freestyle', 20, 'Rap');
+        ('Chicago Freestyle', 20, 'Rap'),
+        ('Funeral Singers', 21, 'Chill'),
+        ('Hey Mami', 21, 'Chill'),
+        ('Rooftop Dancing', 21, 'Chill'),
+        ('Slack Jaw', 21, 'Chill'),
+        ('Uncatena', 21, 'Chill'),
+        ('Only', 22, 'Chill'),
+        ('Berlin', 22, 'Chill'),
+        ('Howling', 22, 'Chill'),
+        ('Bound', 22, 'Chill'),
+        ('YaYaYa', 22, 'Chill'),
+        ('SLOW DANCING IN THE DARK', 23, 'Chill'),
+        ('YEAH RIGHT', 23, 'Chill'),
+        ('Sanctuary', 23, 'Chill'),
+        ('Your Man', 23, 'Chill'),
+        ('Afterthought', 23, 'Chill'),
+        ('Youth', 25, 'Chill'),
+        ('Medicine', 25, 'Chill'),
+        ('Smother', 25, 'Chill'),
+        ('Candles', 25, 'Chill'),
+        ('Landfill', 25, 'Chill'),
+        ('Easily', 24, 'Chill'),
+        ('Places We Won\'\'t Walk', 24, 'Chill'),
+        ('Old Fashioned', 24, 'Chill'),
+        ('Nothing', 24, 'Chill'),
+        ('Just The Same', 24, 'Chill');
 
         INSERT INTO playlistsong (playlist_id, song_id)
         VALUES (1,1),

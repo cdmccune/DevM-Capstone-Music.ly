@@ -4,7 +4,7 @@ const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
 const{seed} = require('./seed')
-const{login, createAcc, getSongs, deleteSong, addSong, getPlaylist, createPlaylist, spotifyAuth} = require('./controller')
+const{login, createAcc, getSongs, deleteSong, addSong, getPlaylist, createPlaylist, spotifyAuth, artistInfo} = require('./controller')
 
 app.use(express.json())
 app.use(cors())
@@ -39,3 +39,4 @@ app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
 
 //To get authorization
 app.get(`/authorization`,spotifyAuth)
+app.get(`/artistinfo/`,artistInfo)

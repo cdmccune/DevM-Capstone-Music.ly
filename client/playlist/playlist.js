@@ -12,14 +12,15 @@ let userName = window.localStorage.getItem("first name")
 
 
 
-
-
-
 // Displays songs that are in the users playlist on the page
+
 const showPlaylist = () => {
     axios.get(`${baseURL}/playlist?userID=${userid}`)
      .then(res => {
+
+
         //Displays the name of the playlist if there is one, or gives an input box if not
+
         playlistName = res.data[1][0].playlist_name
         if (playlistName) {
             let div = document.createElement("div")
@@ -27,7 +28,6 @@ const showPlaylist = () => {
             div.innerHTML=`<h1>${playlistName}</h1>`
             div.style.height = "100%"
         } else {
-        //    <label for="playlist">Initiate Your Playlist</label>
             let form = document.createElement("form")
             titleInput.appendChild(form)
             form.innerHTML = `
@@ -80,30 +80,12 @@ const showPlaylist = () => {
             row.appendChild(artistEntry)
             row.appendChild(genreEntry)
             row.appendChild(deleteEntry)
-
-            // let div = document.createElement("div")
-            // songsSection.appendChild(div)
-            // div.id= `div${song.song_id}`
-            // div.innerHTML = `
-            // <p>${res.data[0][index].song_name} ${res.data[0][index].artist_name} ${res.data[0][index].genre}</p>
-            // `
-
-            // //Creates a delete button for each song
-            // let deleteBtn = document.createElement("button")
-            // div.appendChild(deleteBtn)
-            // deleteBtn.value = `${song.song_id}`
-            // deleteBtn.id = `btn${song.song_id}`
-            // deleteBtn.textContent = `Delete from playlist`
-            // deleteBtn.addEventListener('click', deleteSong)
-
-
          });
 
          container.style.visibility = "visible"
-        //  html.style.height = "fit-content"
         
      })
-     .catch((e)=> {window.location.reload()})
+    //  .catch((e)=> {window.location.reload()})
 } 
 
 const deleteSong = (e) => {
@@ -118,7 +100,9 @@ const deleteSong = (e) => {
         })
 }
 
+
 //For creating and saving you playlist name
+
 const createPlaylist = (e) => {
     e.preventDefault()
 
@@ -126,6 +110,10 @@ const createPlaylist = (e) => {
 
     if (!playlist.value) {
         alert("You must enter an Playlist name!")
+        return
+    } else if (playlist.value.includes("'")) {
+        alert("You can't use apostraphies in your playlist name!")
+        playlist.value=""
         return
     }
 
@@ -151,11 +139,16 @@ const createPlaylist = (e) => {
             div.innerHTML = `<p>Your playlist is empty...</p>
             <p>Go to songs tab to add some!</p>
             `
+        }).catch(err => {
+            playlist.innerText = ""
+            console.log(err)
+            // alert(err)
         })
 }
 
 
 //brings back to logout screen if user doesn't have a userID in local storage
+
 const notLoggedIn = () => {
     !window.localStorage.getItem("userID") ? window.location.href = `../login/login.html` : showPlaylist()
 }

@@ -1,5 +1,3 @@
-// require('dotenv').config()
-// const{CONNECTION_STRING} = process.env
 const logInForm = document.getElementById("logIn")
 const createAccForm = document.getElementById("createAcc")
 
@@ -16,6 +14,7 @@ const baseURL = "http://localhost:4111"
 const handleLogIn = (e) => {
     e.preventDefault()
    
+
     //Check if any fields are empty
     //Check if email has an @ symbol
 
@@ -34,6 +33,7 @@ const handleLogIn = (e) => {
         password: liPassword.value
     }
  
+
     //Axios Post request to server to check if username and password match
     //Save the first name to the local storage 
     //Return by logging them in and moving them to the home if pass
@@ -45,6 +45,10 @@ const handleLogIn = (e) => {
             window.localStorage.setItem("userID", res.data['userid'])
             window.location.href = `../playlist/playlist.html`
         })
+        .catch(err => { 
+            document.querySelectorAll("input").forEach(element=> {element.value = ""})
+            alert(err.response.data)
+        })
 
 }
 
@@ -54,6 +58,7 @@ const handleCreateAcc = (e) => {
     
     //Check if any fields are empty
     //Check if email has an @ symbol
+
     if (!caEmail.value) {
         alert("You must enter an Email!")
         return
@@ -71,7 +76,9 @@ const handleCreateAcc = (e) => {
         return
     }
     
+
     //Create a body object to send with the post req
+
     let body = {
         first: firstName.value,
         last: lastName.value,
@@ -79,9 +86,11 @@ const handleCreateAcc = (e) => {
         password: caPassword.value
     }
 
+
     //Axios POST request to place the information into the DB
     //Save the first name to the local storage
     //Move them to the home screen
+
     axios.post(`${baseURL}/createAcc`, body)
         .then(res => {
             window.localStorage.setItem("first name", firstName.value)
@@ -89,7 +98,10 @@ const handleCreateAcc = (e) => {
             window.location.href = `../playlist/playlist.html`
 
         })
-        .catch(err => {console.log('hi')})
+        .catch(err => {
+            document.querySelectorAll("input").forEach(element=> {element.value = ""})
+            alert(err.response.data)
+        })
 }
 
 logInForm.addEventListener("submit", handleLogIn)
