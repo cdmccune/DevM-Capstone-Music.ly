@@ -5,6 +5,10 @@ let currentArtistName = ""
 let currentArtistElement = null
 
 
+ // "scripts": {
+  //   "start": "node server/index.js"
+  // },
+
 const getAuth = () => {
     axios.get(`${baseURL}/authorization`)
     .then(res => {
