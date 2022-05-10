@@ -1,10 +1,10 @@
 require('dotenv').config()
-const{CONNECTION_STRING, CLIENT_ID, CLIENT_SECRET} = process.env
+const{DATABASE_URL, CLIENT_ID, CLIENT_SECRET} = process.env
 const Sequelize = require("sequelize")
 const request = require('request');
 
 
-const sequelize = new Sequelize(CONNECTION_STRING, {
+const sequelize = new Sequelize(DATABASE_URL, {
     dialect: 'postgres',
     dialectOptions: {
         ssl: {
