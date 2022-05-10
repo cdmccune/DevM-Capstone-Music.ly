@@ -43,7 +43,8 @@ const handleLogIn = (e) => {
             console.log(res.data)
             window.localStorage.setItem("first name", res.data['firstname'])
             window.localStorage.setItem("userID", res.data['userid'])
-            window.location.href = `../playlist/playlist.html`
+
+            window.location.href = `/playlisthtml`
         })
         .catch(err => { 
             document.querySelectorAll("input").forEach(element=> {element.value = ""})
@@ -95,7 +96,8 @@ const handleCreateAcc = (e) => {
         .then(res => {
             window.localStorage.setItem("first name", firstName.value)
             window.localStorage.setItem("userID", res.data['userid'])
-            window.location.href = `../playlist/playlist.html`
+            window.location.href = `/playlisthtml`
+
 
         })
         .catch(err => {

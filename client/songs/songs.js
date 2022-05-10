@@ -153,7 +153,7 @@ form.addEventListener("submit", getSongs)
 
 const notLoggedIn = () => {
     if (!window.localStorage.getItem("userID")) {
-        window.location.href = `../login/login.html`
+        window.location.href = `/`
     }
 }
 

@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require("express")
+const path = require('path')
 const app = express()
 const cors = require('cors')
 const {SERVER_PORT} = process.env
@@ -8,6 +9,57 @@ const{login, createAcc, getSongs, deleteSong, addSong, getPlaylist, createPlayli
 
 app.use(express.json())
 app.use(cors())
+
+
+// Sets up the endpoints for web hosting
+
+app.get('/resetcss', (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/reset.css'))
+})
+app.get('/', (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/login/login.html'))
+})
+app.get("/loginjs", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/login/login.js'))
+})
+app.get("/logincss", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/login/login.css'))
+})
+app.get("/loginhtml", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/login/login.html'))
+})
+app.get("/artistsjs", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/artists/artists.js'))
+})
+app.get("/artistscss", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/artists/artists.css'))
+})
+app.get("/artistshtml", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/artists/artists.html'))
+})
+app.get("/playlistjs", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/playlist/playlist.js'))
+})
+app.get("/playlistcss", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/playlist/playlist.css'))
+})
+app.get("/playlisthtml", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/playlist/playlist.html'))
+})
+app.get("/songscss", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/songs/songs.css'))
+})
+app.get("/songsjs", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/songs/songs.js'))
+})
+app.get("/songshtml", (req,res) => {
+    res.sendFile(path.join(__dirname, '../client/songs/songs.html'))
+})
+
+
+
+
+
 
 //Wipes and seeds the DB
  app.post('/seed', seed)
@@ -32,11 +84,14 @@ app.post("/songs", addSong)
 app.get('/playlist', getPlaylist)
 app.post(`/playlist`, createPlaylist)
 
-app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
-
 
 //Artist Page:
 
 //To get authorization
 app.get(`/authorization`,spotifyAuth)
 app.get(`/artistinfo/`,artistInfo)
+
+
+const port = SERVER_PORT || 3000
+
+app.listen(port, () => console.log(`up on port ${port}`))

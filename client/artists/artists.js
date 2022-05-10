@@ -42,11 +42,11 @@ const expand = () => {
 
 const notLoggedIn = () => {
     if (!window.localStorage.getItem("userID")) {
-        window.location.href = `../login/login.html`
+        window.location.href = `/`
     } else {
         axios.get(`${baseURL}/playlist?userID=${userid}`)
             .then(getAuth())
-            .catch((e)=> {window.location.reload()})
+            // .catch((e)=> {window.location.reload()})
     }
 }
 

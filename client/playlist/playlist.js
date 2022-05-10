@@ -150,7 +150,7 @@ const createPlaylist = (e) => {
 //brings back to logout screen if user doesn't have a userID in local storage
 
 const notLoggedIn = () => {
-    !window.localStorage.getItem("userID") ? window.location.href = `../login/login.html` : showPlaylist()
+    !window.localStorage.getItem("userID") ? window.location.href = `/` : showPlaylist()
 }
 
 notLoggedIn()

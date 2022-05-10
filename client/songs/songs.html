@@ -5,23 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Songs</title>
-    <link rel="stylesheet" href="/client/reset.css">
-    <link rel="stylesheet" href="songs.css">
+    <link rel="stylesheet" href="/resetcss">
+    <link rel="stylesheet" href="/songscss">
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body> 
     <header>
         <div id="navbarwrap">     
         <nav id="navbar">
-            <a href="/client/playlist/playlist.html">My Playlist</a>
-            <a href="/client/artists/artists.html">Artists</a>
-            <a href="/client/songs/songs.html"
+            <a href="/playlisthtml">My Playlist</a>
+            <a href="/artistshtml">Artists</a>
+            <a href="/songshtml"
             style="
             color:white;
             -webkit-text-stroke: 0 rgb(255, 255, 255);
             "
             >Songs</a>
-            <a id="logOut" href="/client/login/login.html">Log Out
+            <a id="logOut" href="/loginhtml">Log Out
                 <script>
                     let logOut = document.getElementById("logOut")
                     logOut.addEventListener("click", ()=>{
@@ -95,7 +96,7 @@
     </main>
     
     
-    <script src="songs.js"></script>
+    <script src="/songsjs"></script>
     <footer></footer>
 
 </body>
