@@ -14,7 +14,7 @@ const sequelize = new Sequelize(DATABASE_URL, {
 })
 module.exports ={
 
-// Destroys all tables that are currently there and creates them fresh. Also repopulates the artists 
+// Destroys all tables that are currently there and creates them fresh. Also repopulates the artists, tracks
 seed: (req, res) => {
     sequelize.query(`
         DROP TABLE IF EXISTS playlistsong;
