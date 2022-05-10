@@ -21,7 +21,6 @@
     "pg-hstore": "^2.3.4",
     "querystring": "^0.2.1",
     "request": "^2.88.2",
-    "sequelize": "^6.19.0",
-    "yarn": "^1.22.18"
+    "sequelize": "^6.19.0"
   }
 }
