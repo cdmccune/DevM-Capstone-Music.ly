@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:4111"
+// const baseURL = "http://localhost:4111"
 const songsSection = document.getElementById("songslist")
 const titleSection = document.getElementById("title")
 const titleInput = document.getElementById("titleInput")
@@ -15,7 +15,7 @@ let userName = window.localStorage.getItem("first name")
 // Displays songs that are in the users playlist on the page
 
 const showPlaylist = () => {
-    axios.get(`${baseURL}/playlist?userID=${userid}`)
+    axios.get(`/playlist?userID=${userid}`)
      .then(res => {
 
 
@@ -97,7 +97,7 @@ const showPlaylist = () => {
 const deleteSong = (e) => {
     let songid =  e.target.value
 
-    axios.delete(`${baseURL}/songs?song=${songid}&userID=${userid}`)
+    axios.delete(`/songs?song=${songid}&userID=${userid}`)
         .then(()=> {
             let remove = document.getElementById(`${songid}`)
             let parent = remove.parentNode
@@ -131,7 +131,7 @@ const createPlaylist = (e) => {
 
     //Posts the title of the playlist and siplays no songs in playlist message
 
-    axios.post(`${baseURL}/playlist`, body)
+    axios.post(`/playlist`, body)
         .then(res => {
             let form = document.querySelector("form")
             titleInput.removeChild(form)

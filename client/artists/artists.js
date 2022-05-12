@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:4111"
+// const baseURL = "http://localhost:4111"
 const userid=window.localStorage.getItem("userID")
 let token = ""
 let currentArtistName = ""
@@ -8,7 +8,7 @@ let currentArtistElement = null
 //Gets the authorization from spotify and sets the tokens value
 
 const getAuth = () => {
-    axios.get(`${baseURL}/authorization`)
+    axios.get(`/authorization`)
     .then(res => {
         token = res.data
     })
@@ -18,7 +18,7 @@ const getAuth = () => {
 //Expands an artists info section, does a request to Spotify API for the info, displays it. 
 
 const expand = () => {
-    axios.get(`${baseURL}/artistinfo?artist=${currentArtistName}&token=${token}`)
+    axios.get(`/artistinfo?artist=${currentArtistName}&token=${token}`)
         .then(res=> {
 
 
@@ -54,7 +54,7 @@ const notLoggedIn = () => {
     if (!window.localStorage.getItem("userID")) {
         window.location.href = `/`
     } else {
-        axios.get(`${baseURL}/playlist?userID=${userid}`)
+        axios.get(`/playlist?userID=${userid}`)
             .then(getAuth())
             // .catch((e)=> {window.location.reload()})
     }

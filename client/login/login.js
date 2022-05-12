@@ -9,7 +9,7 @@ const caPassword = document.querySelector("#caPassword")
 const firstName = document.querySelector("#firstName")
 const lastName = document.querySelector("#lastName")
 
-const baseURL = "http://localhost:4111"
+// const baseURL = "http://localhost:4111"
 
 const handleLogIn = (e) => {
     e.preventDefault()
@@ -38,7 +38,7 @@ const handleLogIn = (e) => {
     //Save the first name to the local storage 
     //Return by logging them in and moving them to the home if pass
 
-    axios.post(`${baseURL}/login`, body)
+    axios.post(`/login`, body)
         .then(res => {
             console.log(res.data)
             window.localStorage.setItem("first name", res.data['firstname'])
@@ -92,7 +92,7 @@ const handleCreateAcc = (e) => {
     //Save the first name to the local storage
     //Move them to the home screen
 
-    axios.post(`${baseURL}/createAcc`, body)
+    axios.post(`/createAcc`, body)
         .then(res => {
             window.localStorage.setItem("first name", firstName.value)
             window.localStorage.setItem("userID", res.data['userid'])

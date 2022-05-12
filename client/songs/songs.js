@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:4111"
+// const baseURL = "http://localhost:4111"
 const container = document.getElementById("container")
 const tableBody = document.querySelector("tbody")
 const form = document.querySelector("form")
@@ -34,7 +34,7 @@ const getSongs = (e)=>{
 
     //Does a post request with what songs are in those genres
 
-    axios.get(`${baseURL}/songs?genre=${genreList}&userID=${userid}`)
+    axios.get(`/songs?genre=${genreList}&userID=${userid}`)
         .then(res => {
 
 
@@ -103,7 +103,7 @@ const addSong = (e) => {
     let songid =  e.target.value
     let userid = window.localStorage.getItem("userID")
 
-    axios.post(`${baseURL}/songs?song=${songid}&userID=${userid}`)
+    axios.post(`/songs?song=${songid}&userID=${userid}`)
         .then(()=> {
 
             let entry = document.getElementById(`${songid}`)
@@ -122,7 +122,7 @@ const deleteSong = (e) => {
         let songid =  e.target.value
         let userid = window.localStorage.getItem("userID")
 
-    axios.delete(`${baseURL}/songs?song=${songid}&userID=${userid}`)
+    axios.delete(`/songs?song=${songid}&userID=${userid}`)
         .then(()=> {
             let entry = document.getElementById(`${songid}`)
             entry.removeEventListener("click", deleteSong)
