@@ -5,24 +5,6 @@ const form = document.querySelector("form")
 const section = document.querySelector("section")
 
 
-//Gets all the songs that are currently on the users playlist
-
-const getUserSongs = () => {
-    let body = {
-        userid: window.localStorage.getItem("userID")
-    }
-
-    let playlistsongs = []
-    axios.post(`${baseURL}/songs/playlist`,body)
-        .then(res => {
-            res.data.forEach(song => {
-                playlistsongs.push(song.song_id)
-                window.localStorage.setItem("usersongs", playlistsongs)
-            })
-        })
-}
-
-
 //Print all the songs and "add" or "delete" button when the user does a search
 
 const getSongs = (e)=>{
@@ -113,6 +95,9 @@ const getSongs = (e)=>{
         })
 }
 
+
+// Adds songs when add song button is pressed and switches to delete song button
+
 const addSong = (e) => {
     
     let songid =  e.target.value
@@ -128,6 +113,9 @@ const addSong = (e) => {
             entry.addEventListener("click", deleteSong)
         })
 }
+
+
+//Deletes song and changes to the add song button
 
 const deleteSong = (e) => {
     

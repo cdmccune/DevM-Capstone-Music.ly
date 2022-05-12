@@ -42,6 +42,9 @@ const showPlaylist = () => {
 
         songs = res.data[0]
         
+
+        //Displays that playlist is empty if the user has no songs in playlist
+
         if (songs.length == 0){
             let div = document.createElement("div")
             titleInput.appendChild(div)
@@ -88,6 +91,9 @@ const showPlaylist = () => {
     //  .catch((e)=> {window.location.reload()})
 } 
 
+
+//For deleting songs from your playlist
+
 const deleteSong = (e) => {
     let songid =  e.target.value
 
@@ -121,6 +127,9 @@ const createPlaylist = (e) => {
         userid: userid,
         playlistName: playlist.value
     }
+
+
+    //Posts the title of the playlist and siplays no songs in playlist message
 
     axios.post(`${baseURL}/playlist`, body)
         .then(res => {

@@ -5,7 +5,7 @@ let currentArtistName = ""
 let currentArtistElement = null
 
 
-
+//Gets the authorization from spotify and sets the tokens value
 
 const getAuth = () => {
     axios.get(`${baseURL}/authorization`)
@@ -15,9 +15,14 @@ const getAuth = () => {
 }
 
 
+//Expands an artists info section, does a request to Spotify API for the info, displays it. 
+
 const expand = () => {
     axios.get(`${baseURL}/artistinfo?artist=${currentArtistName}&token=${token}`)
         .then(res=> {
+
+
+            //Makes the list of
 
             let genreList = ''
             if (res.data.genres.length > 1 ){
@@ -26,6 +31,9 @@ const expand = () => {
             } else {
                 genreList = res.data.genres
             }
+
+            
+            //Sets the empty areas to the values from Spotify
 
             currentArtistElement.querySelectorAll("h2").innerText = ""
             currentArtistElement.querySelector(".popularity").innerText = `Popularity: ${res.data.popularity}`
