@@ -3,7 +3,7 @@ const express = require("express")
 const path = require('path')
 const app = express()
 const cors = require('cors')
-const {SERVER_PORT} = process.env
+const {PORT} = process.env
 const{seed} = require('./seed')
 const{login, createAcc, getSongs, deleteSong, addSong, getPlaylist, createPlaylist, spotifyAuth, artistInfo} = require('./controller')
 
