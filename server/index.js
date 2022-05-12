@@ -55,6 +55,9 @@ app.get("/songsjs", (req,res) => {
 app.get("/songshtml", (req,res) => {
     res.sendFile(path.join(__dirname, '../client/songs/songs.html'))
 })
+app.get("/favicon", (req,res) => {
+    res.sendFile(path.join(__dirname, '../favicon.ico'))
+})
 
 
 
